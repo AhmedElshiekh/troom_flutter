@@ -33,7 +33,7 @@ class EndPoints{
   static const MyCourses = Url + 'myCourses?token=';
   static const MyClasses = Url + 'myClasses?token=';
   static const MyPrivateClasses = Url + 'myPrivateClasses?token=';
-  static const ShowMyPrivateClassLesson = Url + 'privatelassLesson';
+  static const ShowMyPrivateClassLesson = Url + 'privateClassLesson';
   static const ShowMyClassLesson = Url + 'classLesson';
 
   static const QuizLesson = Url + 'quizLesson';
