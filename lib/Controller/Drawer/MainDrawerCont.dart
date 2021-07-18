@@ -71,7 +71,7 @@ class MainDrawerCont extends GetxController {
     var res = await repoLogout(token).then((value) {
       LogoutRes logoutRes = LogoutRes.fromJson(value.data);
       if (logoutRes.status){
-
+        FlutterRestart.restartApp();
         update();
         print('$LOGD loginResData  ${logoutRes.massage}');
         return true;

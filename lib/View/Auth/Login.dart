@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_restart/flutter_restart.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:troom/Controller/Auth/Login/LoginCont.dart';
@@ -122,7 +123,9 @@ class Login extends GetView<LoginCont> {
                                                   titleText: CustomText(txt: 'LoggingSuccess'.tr,
                                                     txtAlign: TextAlign.center,));
                                               Get.back();
-                                              Get.offAll(() =>Home());
+                                              await FlutterRestart.restartApp();
+                                              // Get.forceAppUpdate();
+                                              // Get.offAllNamed(Home.Id);
                                             }else if(_loginCont.loginErrorMessage.length>0){
                                               if(_loginCont.loginErrorMessage[0]=='You should verify you phone'){
                                                 showDialog(

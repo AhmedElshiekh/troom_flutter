@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_restart/flutter_restart.dart';
 import 'package:get/get.dart';
 import 'package:troom/Controller/Drawer/MainDrawerCont.dart';
 import 'package:troom/CustomViews/CustomText.dart';
@@ -190,8 +191,8 @@ class MainDrawer extends StatelessWidget {
                         print('Nav :: LogOut Clicked');
                         if(await cont.checkLogoutRes()){
                           // Get.offAllNamed(Home.Id);
-                          Get.back();
-                        Get.offAll(Home());
+                          // Get.back();
+                          // Get.offAll(Home());
                         }
 
                       },

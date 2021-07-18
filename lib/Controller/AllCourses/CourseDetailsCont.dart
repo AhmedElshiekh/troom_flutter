@@ -755,17 +755,17 @@ class CourseDetailsCont extends GetxController{
 
   @override
   void onClose() {
-    // if(controller != null){
-    //   controller.dispose();
-    // }
-    chewieController.pause();
-    chewieController.dispose();
-    videoPlayerController.dispose();
+    if(chewieController != null){
+      chewieController.pause();
+      chewieController.dispose();
+      videoPlayerController.dispose();    }
+
   // Get.back();
   checkAnswers.clear();
   courseKey = null;
   courseDetailsResData = CourseDetailsResData();
   // Get.back();
+  //   Get.forceAppUpdate();
   update();
   print('$LOGD CLOSED-------');
     super.onClose();
