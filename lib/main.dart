@@ -10,8 +10,8 @@ import 'package:troom/View/Home.dart';
 import 'package:troom/View/Splash.dart';
 
 void main() async{
-
   WidgetsFlutterBinding.ensureInitialized();
+
   await GetStorage.init();
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: ConstStyles.WhiteColor));

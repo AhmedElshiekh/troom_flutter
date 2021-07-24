@@ -175,7 +175,9 @@ class StudProfCont extends GetxController{
         List<MyClassesResData> myClassesResData =
         List<MyClassesResData>.from(
             list.map((e) => MyClassesResData.fromJson(e)).toList());
+
         classesList = myClassesResData.map((e) => MyClassesDataList(data: e)).toList();
+
         update();
         print('$LOGD ClassesList length ${classesList.length}');
       }else{

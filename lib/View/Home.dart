@@ -703,6 +703,8 @@ class Home extends GetView<HomeCont> {
                                               itemCount: _homeCont.coursesList.length > 3 ? 3 : _homeCont.coursesList.length,
                                               itemBuilder: (context,index){
                                                 return GetBuilder<HomeCont>(builder: (_){
+                                                  // print("sssssssssssssssss ${_homeCont.coursesList[index]}");
+
                                                   if(_homeCont.coursesList[index] != null){
                                                     return InkWell(
                                                       onTap:(){

@@ -69,7 +69,8 @@ class ShowLesson extends StatelessWidget {
                   color: ConstStyles.BlackColor,
                 ),
 
-               Padding(
+               Container(
+                 height: MediaQuery.of(context).size.height*.64,
                  padding: EdgeInsets.only(left: localW * 0.03,right: localW * 0.03),
                  child: SizedBox(
                    height: localH,
@@ -90,13 +91,13 @@ class ShowLesson extends StatelessWidget {
                                      textColor: ConstStyles.BlackColor,
                                      text:  _lessonsList[index].name == null ? '' : _lessonsList[index].name,
                                      fontWeight: FontWeight.bold,
-                                     size: localW*0.06,),
+                                     size: localW*0.04,),
 
                                    AutoTextSize(
                                      textColor: ConstStyles.BlackColor,
                                      text:  _lessonsList[index].status,
                                      fontWeight: FontWeight.bold,
-                                     size: localW*0.06,),
+                                     size: localW*0.04,),
                                  ],
                                ),
                                SizedBox(height: localH * 0.02,),
@@ -111,19 +112,19 @@ class ShowLesson extends StatelessWidget {
                                              textColor: ConstStyles.BlackColor,
                                              text:  _lessonsList[index].day.substring(0,3) + ' ',
                                              // fontWeight: FontWeight.bold,
-                                             size: localW*0.06,),
+                                             size: localW*0.04,),
                                            AutoTextSize(
                                              textColor: ConstStyles.BlackColor,
                                              text:  _lessonsList[index].date + ' ',
                                              // fontWeight: FontWeight.bold,
-                                             size: localW*0.06,),
+                                             size: localW*0.04,),
                                          ],
                                        ),
                                        AutoTextSize(
                                          textColor: ConstStyles.BlackColor,
                                          text:  _lessonsList[index].time.substring(0,5) + ' AM',
                                          // fontWeight: FontWeight.bold,
-                                         size: localW*0.06,),
+                                         size: localW*0.04,),
                                      ],
                                    ),
 
