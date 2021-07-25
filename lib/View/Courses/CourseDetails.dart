@@ -5,14 +5,12 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:troom/Controller/AllCourses/CourseDetailsCont.dart';
 import 'package:troom/View/Courses/CoursePlacementTest.dart';
-import 'package:troom/Controller/HomePage/HomeCont.dart';
 import 'package:troom/Controller/ModalHudCont.dart';
 import 'package:troom/CustomViews/AutoTextSize.dart';
 import 'package:troom/CustomViews/CustomText.dart';
 import 'package:troom/CustomViews/LogoContainer.dart';
 import 'package:troom/CustomViews/OrangeBtn.dart';
 import 'package:troom/Models/CourseDetails/CourseDetailsResData.dart';
-import 'package:troom/Models/LessonData/LessonDataResData.dart';
 import 'package:troom/Util/ConstStyles.dart';
 import 'package:troom/Util/EndPoints.dart';
 import 'package:troom/Util/LocalDataStrings.dart';
@@ -20,22 +18,37 @@ import 'package:troom/View/Auth/Login.dart';
 import 'package:troom/View/Auth/Register.dart';
 import 'package:troom/View/MainDrawer.dart';
 import 'package:troom/View/Courses/PayPalView.dart';
-import 'package:troom/View/PlacementTest.dart';
-import 'package:video_player/video_player.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 
-class CourseDetails extends GetView<CourseDetailsCont> {
+class CourseDetails extends StatefulWidget {
   static const Id = 'CourseDetailsScreen';
   var _courseKey;
    CourseDetailsCont _courseDetailsCont;
-   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   CourseDetails(this._courseKey){
-
     _courseDetailsCont = Get.put(CourseDetailsCont(_courseKey.toString()));
-
   }
+
+  @override
+  _CourseDetailsState createState() => _CourseDetailsState();
+}
+
+class _CourseDetailsState extends State<CourseDetails> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  Widget checkLoadingVideo(){
+    if(widget._courseDetailsCont.chewieController == null){
+      //print("############@@@@@@@@@@@@@@@#####@@@@@@${_courseDetailsCont.chewieController}");
+      return Center(child: CircularProgressIndicator());
+    } else{
+      //print("############@@@@@@@@@@@@@@@#####@@@@@@${_courseDetailsCont.chewieController}");
+      return Chewie(
+        controller: widget._courseDetailsCont.chewieController,
+      );
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +64,7 @@ class CourseDetails extends GetView<CourseDetailsCont> {
         child: GetBuilder<ModalHudCont>(
           builder: (_){
             return ModalProgressHUD(
-              inAsyncCall: _courseDetailsCont.modalHudController.isLoading,
+              inAsyncCall: widget._courseDetailsCont.modalHudController.isLoading,
               child: Container(
                 child: LayoutBuilder(builder: (context,cons){
                   var localH = cons.maxHeight;
@@ -73,14 +86,14 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                       child: SizedBox(
                                         width: localW,
                                         height: localH * 0.4,
-                                        child: _courseDetailsCont.courseDetailsResData.image != null ?
+                                        child: widget._courseDetailsCont.courseDetailsResData.image != null ?
                                         ClipRRect(
                                           borderRadius: BorderRadius.circular(0.0),
                                           child: FadeInImage.memoryNetwork(
                                             fit: BoxFit.fill,
                                             imageScale: 1.0,
                                             placeholder: kTransparentImage,
-                                            image: "${EndPoints.ImageUrl}${_courseDetailsCont.courseDetailsResData.image.toString()}" ,
+                                            image: "${EndPoints.ImageUrl}${widget._courseDetailsCont.courseDetailsResData.image.toString()}" ,
                                           ),
                                         ) : LogoContainer(),
                                       )
@@ -112,8 +125,8 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                                       child: GetBuilder<CourseDetailsCont>(
                                                         builder: (_){
                                                           return CustomText(
-                                                            txt: _courseDetailsCont.courseDetailsResData.category == null ? ''
-                                                                : _courseDetailsCont.courseDetailsResData.category,
+                                                            txt: widget._courseDetailsCont.courseDetailsResData.category == null ? ''
+                                                                : widget._courseDetailsCont.courseDetailsResData.category,
                                                             fontSize: localW * 0.05,);
                                                         },
                                                       )),
@@ -126,14 +139,14 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                                       shape: BoxShape.rectangle,
                                                       color: ConstStyles.DarkColor
                                                   ),
-                                                  child: Center(child: CustomText(txt: _courseDetailsCont.courseDetailsResData.subCategory == null ? '' : _courseDetailsCont.courseDetailsResData.subCategory,fontSize: localW * 0.05,)),
+                                                  child: Center(child: CustomText(txt: widget._courseDetailsCont.courseDetailsResData.subCategory == null ? '' : widget._courseDetailsCont.courseDetailsResData.subCategory,fontSize: localW * 0.05,)),
                                                 ),
                                               ],
                                             ),
                                             SizedBox(height: localH * 0.02,),
-                                            CustomText(txt: _courseDetailsCont.courseDetailsResData.name == null ? '' : _courseDetailsCont.courseDetailsResData.name,fontSize: localW * 0.07,),
+                                            CustomText(txt: widget._courseDetailsCont.courseDetailsResData.name == null ? '' : widget._courseDetailsCont.courseDetailsResData.name,fontSize: localW * 0.07,),
                                             SizedBox(height: localH * 0.02,),
-                                            CustomText(txt:  _courseDetailsCont.courseDetailsResData.shortDescription == null ? '' : _courseDetailsCont.courseDetailsResData.shortDescription,fontSize: localW * 0.05,),
+                                            CustomText(txt:  widget._courseDetailsCont.courseDetailsResData.shortDescription == null ? '' : widget._courseDetailsCont.courseDetailsResData.shortDescription,fontSize: localW * 0.05,),
                                             SizedBox(height: localH * 0.006,),
                                           ],
                                         ),
@@ -148,11 +161,11 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                           //TODO buy Now
                           GetBuilder<CourseDetailsCont>(builder: (_){
                             //TODO owner == null or == false
-                            if(_courseDetailsCont.courseDetailsResData.owner!=null && !_courseDetailsCont.courseDetailsResData.owner)
+                            if(widget._courseDetailsCont.courseDetailsResData.owner!=null && !widget._courseDetailsCont.courseDetailsResData.owner)
                             {
-                              print('Tesssr:: ${_courseDetailsCont.courseDetailsResData.owner}');
+                              print('Tesssr:: ${widget._courseDetailsCont.courseDetailsResData.owner}');
                               //TODO No Discount Price
-                              if(_courseDetailsCont.courseDetailsResData.discountPrice == null || _courseDetailsCont.courseDetailsResData.discountPrice == 0){
+                              if(widget._courseDetailsCont.courseDetailsResData.discountPrice == null || widget._courseDetailsCont.courseDetailsResData.discountPrice == 0){
                                 return  Container(
                                   width: localW,
                                   margin: EdgeInsets.only(left: localW * 0.03,right: localW * 0.03,top: localH * 0.01),
@@ -161,8 +174,8 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       //TODO price
-                                      CustomText(txt: _courseDetailsCont.courseDetailsResData.price == null ? '':
-                                      _courseDetailsCont.courseDetailsResData.price.toString()
+                                      CustomText(txt: widget._courseDetailsCont.courseDetailsResData.price == null ? '':
+                                      widget._courseDetailsCont.courseDetailsResData.price.toString()
                                         ,txtColor: ConstStyles.DarkColor,),
                                       // CustomText(txt: 'EgyptianPound'.tr
                                       //   ,txtColor: ConstStyles.DarkColor,),
@@ -171,8 +184,8 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                       GetBuilder<CourseDetailsCont>(builder: (_){
                                         return OrangeBtn(text: 'BuyNow'.tr,onClick: ()async{
                                           //TODO User Not Logged In Can't buy
-                                          if(_courseDetailsCont.getStorage.read(LocalDataStrings.isLogged) == null
-                                              || !_courseDetailsCont.getStorage.read(LocalDataStrings.isLogged)){
+                                          if(widget._courseDetailsCont.getStorage.read(LocalDataStrings.isLogged) == null
+                                              || !widget._courseDetailsCont.getStorage.read(LocalDataStrings.isLogged)){
                                             showDialog(
                                               barrierDismissible: false,
                                                 context: context,
@@ -212,7 +225,7 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                           }
                                           //TODO User Already Logged In can buy
                                           else{
-                                            var url = await _courseDetailsCont.getPauPalLink(_courseDetailsCont.courseDetailsResData.key, _courseDetailsCont.token);
+                                            var url = await widget._courseDetailsCont.getPauPalLink(widget._courseDetailsCont.courseDetailsResData.key, widget._courseDetailsCont.token);
                                             if(url!=null){
                                               Get.to(()=>PayPalView(url));
                                             }
@@ -248,8 +261,8 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                                   width: localW * 0.2,
                                                   child: CustomText(
                                                     txtAlign: TextAlign.center,
-                                                    txt: _courseDetailsCont.courseDetailsResData.price == null ? '':
-                                                    _courseDetailsCont.courseDetailsResData.price.toString(),
+                                                    txt: widget._courseDetailsCont.courseDetailsResData.price == null ? '':
+                                                    widget._courseDetailsCont.courseDetailsResData.price.toString(),
                                                     txtColor: Colors
                                                         .green,
                                                     fontSize:
@@ -276,8 +289,8 @@ class CourseDetails extends GetView<CourseDetailsCont> {
 
                                       SizedBox(width: localW * 0.02,),
 
-                                      CustomText(txt: _courseDetailsCont.courseDetailsResData.discountPrice == null ? '':
-                                      _courseDetailsCont.courseDetailsResData.discountPrice.toString()
+                                      CustomText(txt: widget._courseDetailsCont.courseDetailsResData.discountPrice == null ? '':
+                                      widget._courseDetailsCont.courseDetailsResData.discountPrice.toString()
                                         ,txtColor: ConstStyles.DarkColor,),
                                       // CustomText(txt: 'EgyptianPound'.tr
                                       //   ,txtColor: ConstStyles.DarkColor,),
@@ -286,8 +299,8 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                       GetBuilder<CourseDetailsCont>(builder: (_){
                                         return OrangeBtn(text: 'BuyNow'.tr,onClick: ()async{
                                           //TODO User Not Logged In Can't buy
-                                          if(_courseDetailsCont.getStorage.read(LocalDataStrings.isLogged) == null
-                                              || !_courseDetailsCont.getStorage.read(LocalDataStrings.isLogged)){
+                                          if(widget._courseDetailsCont.getStorage.read(LocalDataStrings.isLogged) == null
+                                              || !widget._courseDetailsCont.getStorage.read(LocalDataStrings.isLogged)){
                                             showDialog(
                                               barrierDismissible: false,
                                                 context: context,
@@ -329,7 +342,7 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                           }
                                           //TODO User Already Logged In can buy
                                           else{
-                                            var url = await _courseDetailsCont.getPauPalLink(_courseDetailsCont.courseDetailsResData.key, _courseDetailsCont.token);
+                                            var url = await widget._courseDetailsCont.getPauPalLink(widget._courseDetailsCont.courseDetailsResData.key, widget._courseDetailsCont.token);
                                             if(url!=null){
                                               Get.to(()=>PayPalView(url));
                                             }                                          }
@@ -343,14 +356,14 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                             }
                             //TODO owner == true && Has Placement Test
                             else
-                              if(_courseDetailsCont.courseDetailsResData.owner != null
-                                && _courseDetailsCont.courseDetailsResData.owner
-                                && _courseDetailsCont.courseDetailsResData.placementTest != null){
+                              if(widget._courseDetailsCont.courseDetailsResData.owner != null
+                                && widget._courseDetailsCont.courseDetailsResData.owner
+                                && widget._courseDetailsCont.courseDetailsResData.placementTest != null){
                               return Center(
                                 child: OrangeBtn(
                                   text: 'Take Placement Test',
                                   onClick: ()async{
-                                   await _courseDetailsCont.getPlacementExamData(_courseDetailsCont.courseDetailsResData.placementTest, _courseDetailsCont.token, _courseDetailsCont.appLang);
+                                   await widget._courseDetailsCont.getPlacementExamData(widget._courseDetailsCont.courseDetailsResData.placementTest, widget._courseDetailsCont.token, widget._courseDetailsCont.appLang);
                                     showDialog(
                                         barrierDismissible: false,
                                         context: _scaffoldKey.currentContext,
@@ -361,7 +374,7 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                           // );
                                           return GetBuilder<ModalHudCont>(builder: (_){
                                             return ModalProgressHUD(
-                                              inAsyncCall: _courseDetailsCont.modalHudController.isLoading,
+                                              inAsyncCall: widget._courseDetailsCont.modalHudController.isLoading,
                                               child: GetBuilder<CourseDetailsCont>(builder: (_){
                                                 //TODO Dialog
                                                 return AlertDialog(
@@ -445,7 +458,7 @@ class CourseDetails extends GetView<CourseDetailsCont> {
 
                           //TODO Current Lesson Name And Video
                           GetBuilder<CourseDetailsCont>(builder: (_){
-                            if(_courseDetailsCont.courseDetailsResData.currentLessonKey == null){
+                            if(widget._courseDetailsCont.courseDetailsResData.currentLessonKey == null){
                               return Container();
                             }else{
                               return Container(
@@ -460,17 +473,14 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                     //TODO Lesson Title from lesson data api
                                     Container(
                                         width: localW,
-                                        child: CustomText(txt: _courseDetailsCont.lessonDataResData.name == null ?
-                                        ' ' : _courseDetailsCont.lessonDataResData.name,fontSize: localW * 0.06,txtColor: ConstStyles.DarkColor,)),
+                                        child: CustomText(txt: widget._courseDetailsCont.lessonDataResData.name == null ?
+                                        ' ' : widget._courseDetailsCont.lessonDataResData.name,fontSize: localW * 0.06,txtColor: ConstStyles.DarkColor,)),
 
                                     //TODO Lesson Video
                                     SizedBox(
                                       width: localW,
                                       height: localH * 0.35,
-                                      child: _courseDetailsCont.chewieController == null ?
-                                      Center(child: CircularProgressIndicator()) : Chewie(
-                                        controller: _courseDetailsCont.chewieController,
-                                      )
+                                      child: checkLoadingVideo(),
 /*
                                       FutureBuilder(
                                         future: _courseDetailsCont.initializeVideoPlayerFuture,
@@ -583,8 +593,8 @@ class CourseDetails extends GetView<CourseDetailsCont> {
 
                                 //TODO Course
                                 GetBuilder<CourseDetailsCont>(builder: (_){
-                                  if(_courseDetailsCont.courseDetailsResData.chapters != null
-                                      && _courseDetailsCont.courseDetailsResData.chapters.length > 0 ){
+                                  if(widget._courseDetailsCont.courseDetailsResData.chapters != null
+                                      && widget._courseDetailsCont.courseDetailsResData.chapters.length > 0 ){
                                     return Expanded(
                                         child: ListView(
                                       children: [
@@ -593,9 +603,9 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                           child: ExpansionPanelList(
                                             dividerColor: ConstStyles.WhiteColor,
                                             expansionCallback: (index,isExpanded){
-                                              _courseDetailsCont.changeExpandedView(index);
+                                              widget._courseDetailsCont.changeExpandedView(index);
                                             },
-                                            children: _courseDetailsCont.myExpandedItem.map((myItem item) {
+                                            children: widget._courseDetailsCont.myExpandedItem.map((myItem item) {
                                               return ExpansionPanel(
                                                 backgroundColor: ConstStyles.BlueColor,
                                                 headerBuilder: (context,isExpanded){
@@ -620,13 +630,14 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                                                 height: localH * 0.05,
                                                                 child: InkWell(
                                                                   onTap: (){
-                                                                    if(_courseDetailsCont.lessonDataResData.prevTest != null){
+                                                                    if(widget._courseDetailsCont.lessonDataResData.prevTest != null){
                                                                       Get.snackbar('', '',backgroundColor: ConstStyles.DarkColor,
                                                                           colorText: ConstStyles.WhiteColor,
                                                                           titleText: CustomText(txt: 'YouShouldPassTheChapterExamFirst'.tr,
                                                                             txtAlign: TextAlign.center,));
                                                                     }else{
-                                                                      _courseDetailsCont.getLessonData(item.body[lessonIndex].key, _courseDetailsCont.token);
+
+                                                                      widget._courseDetailsCont.getLessonData(item.body[lessonIndex].key, widget._courseDetailsCont.token);
                                                                     }
                                                                   },
                                                                   child: Row(
@@ -650,7 +661,9 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                                                 height: localH * 0.05,
                                                                 child: InkWell(
                                                                   onTap: ()async{
-                                                                    if(await _courseDetailsCont.downloadMaterial(_courseDetailsCont.lessonDataResData.material)){
+                                                                    print("111111111111111111111111111${widget._courseDetailsCont.lessonDataResData.material}");
+
+                                                                    if(await widget._courseDetailsCont.downloadMaterial(widget._courseDetailsCont.lessonDataResData.material)){
                                                                     Get.snackbar('', '',backgroundColor: ConstStyles.DarkColor,
                                                                     colorText: ConstStyles.WhiteColor,
                                                                     titleText: CustomText(txt: 'SuccessfullyDownloadedMaterial'.tr,
@@ -694,7 +707,7 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                                                               builder: (context){
                                                                                 return GetBuilder<ModalHudCont>(builder: (_){
                                                                                   return ModalProgressHUD(
-                                                                                    inAsyncCall: _courseDetailsCont.modalHudController.isLoading,
+                                                                                    inAsyncCall: widget._courseDetailsCont.modalHudController.isLoading,
                                                                                     child: GetBuilder<CourseDetailsCont>(builder: (_){
                                                                                       //TODO Dialog
                                                                                       return AlertDialog(
@@ -720,23 +733,23 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                                                                                   color: ConstStyles.OrangeColor,
                                                                                                 ),
 
-                                                                                                Html(data: _courseDetailsCont.lessonDataResData.summary == null ? ' ' :_courseDetailsCont.lessonDataResData.summary ,),
+                                                                                                Html(data: widget._courseDetailsCont.lessonDataResData.summary == null ? ' ' :widget._courseDetailsCont.lessonDataResData.summary ,),
                                                                                                 GetBuilder<CourseDetailsCont>(builder: (_){
-                                                                                                  print(' GetBuilder Check Lesson Closed = ${_courseDetailsCont.lessonDataResData.lessonClosed}');
+                                                                                                  print(' GetBuilder Check Lesson Closed = ${widget._courseDetailsCont.lessonDataResData.lessonClosed}');
 
-                                                                                                  if(!_courseDetailsCont.lessonDataResData.endQuizLesson){
+                                                                                                  if(!widget._courseDetailsCont.lessonDataResData.endQuizLesson){
                                                                                                     return OrangeBtn(text: 'LessonExam'.tr, onClick: (){
                                                                                                       //TODO Open Lesson Exam
-                                                                                                      print('LessonExam Key:: ${_courseDetailsCont.lessonDataResData.key}');
+                                                                                                      print('LessonExam Key:: ${widget._courseDetailsCont.lessonDataResData.key}');
                                                                                                       Get.back();
-                                                                                                      _courseDetailsCont.getCourseQuizLesson(_courseDetailsCont.lessonDataResData.key, _courseDetailsCont.token);
+                                                                                                      widget._courseDetailsCont.getCourseQuizLesson(widget._courseDetailsCont.lessonDataResData.key, widget._courseDetailsCont.token);
                                                                                                     });
                                                                                                   }else{
                                                                                                     return OrangeBtn(text: 'NextLesson'.tr, onClick: (){
                                                                                                       //TODO Open Next Lesson
-                                                                                                      if(_courseDetailsCont.lessonDataResData.nextLesson != null){
+                                                                                                      if(widget._courseDetailsCont.lessonDataResData.nextLesson != null){
                                                                                                         Get.back();
-                                                                                                        _courseDetailsCont.getLessonData(_courseDetailsCont.lessonDataResData.nextLesson, _courseDetailsCont.token);
+                                                                                                        widget._courseDetailsCont.getLessonData(widget._courseDetailsCont.lessonDataResData.nextLesson, widget._courseDetailsCont.token);
                                                                                                       }else{
                                                                                                         Get.back();
                                                                                                         Get.snackbar('', '',backgroundColor: ConstStyles.DarkColor,
@@ -772,13 +785,13 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                                               SizedBox(
                                                                 height: localH * 0.05,
                                                                 child: GetBuilder<CourseDetailsCont>(builder: (_){
-                                                                  if( _courseDetailsCont.courseDetailsResData.chapters[lessonIndex] != null &&
-                                                                      _courseDetailsCont.courseDetailsResData.chapters[lessonIndex].quiz){
+                                                                  if( widget._courseDetailsCont.courseDetailsResData.chapters[lessonIndex] != null &&
+                                                                      widget._courseDetailsCont.courseDetailsResData.chapters[lessonIndex].quiz){
                                                                     return OrangeBtn(text: 'ChapterQuiz'.tr, onClick: (){
-                                                                      _courseDetailsCont.getCourseQuizChapter(
-                                                                          _courseDetailsCont.courseDetailsResData.chapters[lessonIndex].key,
-                                                                          _courseDetailsCont.token,
-                                                                          _courseDetailsCont.courseDetailsResData.chapters[lessonIndex].name);
+                                                                      widget._courseDetailsCont.getCourseQuizChapter(
+                                                                          widget._courseDetailsCont.courseDetailsResData.chapters[lessonIndex].key,
+                                                                          widget._courseDetailsCont.token,
+                                                                          widget._courseDetailsCont.courseDetailsResData.chapters[lessonIndex].name);
 
                                                                     },btnColor: ConstStyles.BlueColor,);
                                                                   }else{
@@ -931,7 +944,7 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                           //TODO Lesson Objectives
                           Container(
                             child: GetBuilder<CourseDetailsCont>(builder: (_){
-                              if(_courseDetailsCont.lessonDataResData.objective == null){
+                              if(widget._courseDetailsCont.lessonDataResData.objective == null){
                                 return Container();
                               }else{
                                 return Container(
@@ -1045,7 +1058,7 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                       CustomText(txt: 'Objectives'.tr,txtColor: ConstStyles.BlackColor,fontSize: localW * 0.06,fontWeight: FontWeight.bold),
                                       Directionality(
                                           textDirection: TextDirection.ltr,
-                                          child: Html(data: _courseDetailsCont.lessonDataResData.objective,)),
+                                          child: Html(data: widget._courseDetailsCont.lessonDataResData.objective,)),
                                       SizedBox(height: localH * 0.015,),
 
 
@@ -1082,8 +1095,8 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                       SizedBox(height: localH * 0.02,),
                                       Directionality(
                                         textDirection: TextDirection.ltr,
-                                        child: Html(data: _courseDetailsCont.courseDetailsResData.description == null ? ''
-                                            : _courseDetailsCont.courseDetailsResData.description,),
+                                        child: Html(data: widget._courseDetailsCont.courseDetailsResData.description == null ? ''
+                                            : widget._courseDetailsCont.courseDetailsResData.description,),
                                       )
 
                                     ],
@@ -1112,8 +1125,8 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                         textDirection: TextDirection.ltr,
                                         child: Container(
                                             child: Html(
-                                              data: _courseDetailsCont.courseDetailsResData.requirements == null ? ''
-                                                  : _courseDetailsCont.courseDetailsResData.requirements,)
+                                              data: widget._courseDetailsCont.courseDetailsResData.requirements == null ? ''
+                                                  : widget._courseDetailsCont.courseDetailsResData.requirements,)
                                         ),
                                       ),
                                     ],
@@ -1141,8 +1154,8 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                       SizedBox(height: localH * 0.02,),
                                       Directionality(
                                         textDirection: TextDirection.ltr,
-                                        child: Html(data: _courseDetailsCont.courseDetailsResData.whatWillLearn == null ? ''
-                                            : _courseDetailsCont.courseDetailsResData.whatWillLearn),
+                                        child: Html(data: widget._courseDetailsCont.courseDetailsResData.whatWillLearn == null ? ''
+                                            : widget._courseDetailsCont.courseDetailsResData.whatWillLearn),
                                       ),
                                     ],
                                   ),
@@ -1159,8 +1172,8 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                             padding: EdgeInsets.only(left: localW * 0.01,right: localW * 0.01),
                             child: GetBuilder<CourseDetailsCont>(
                               builder: (_){
-                                if(_courseDetailsCont.courseDetailsResData.teachers != null &&
-                                    _courseDetailsCont.courseDetailsResData.teachers.length >0){
+                                if(widget._courseDetailsCont.courseDetailsResData.teachers != null &&
+                                    widget._courseDetailsCont.courseDetailsResData.teachers.length >0){
                                   return Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -1178,7 +1191,7 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                       SizedBox(
                                         height: localH * 0.24,
                                         child: ListView.builder(
-                                          itemCount: _courseDetailsCont.courseDetailsResData.teachers.length,
+                                          itemCount: widget._courseDetailsCont.courseDetailsResData.teachers.length,
                                           itemBuilder: (context,index){
                                             return Column(
                                               children: [
@@ -1192,12 +1205,12 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                                       height: localH * 0.1,
                                                       width: localW * 0.1,
                                                       child: GetBuilder<CourseDetailsCont>(builder: (_){
-                                                        if(_courseDetailsCont.courseDetailsResData.teachers !=null &&
-                                                            _courseDetailsCont.courseDetailsResData.teachers[index].image !=null){
+                                                        if(widget._courseDetailsCont.courseDetailsResData.teachers !=null &&
+                                                            widget._courseDetailsCont.courseDetailsResData.teachers[index].image !=null){
                                                           return Container(
                                                             decoration: BoxDecoration(
                                                               image: DecorationImage(
-                                                                image: NetworkImage("${EndPoints.ImageUrl}${_courseDetailsCont.courseDetailsResData.teachers[index].image}"),
+                                                                image: NetworkImage("${EndPoints.ImageUrl}${widget._courseDetailsCont.courseDetailsResData.teachers[index].image}"),
                                                                 fit: BoxFit.contain,
                                                               ),
                                                             ),
@@ -1221,16 +1234,16 @@ class CourseDetails extends GetView<CourseDetailsCont> {
                                                     //TODO Teacher Name
                                                     SizedBox(
 
-                                                      child: AutoTextSize(text: _courseDetailsCont.courseDetailsResData.teachers[index].name == null
-                                                          ? '' : _courseDetailsCont.courseDetailsResData.teachers[index].name,textColor: ConstStyles.BlackColor,
+                                                      child: AutoTextSize(text: widget._courseDetailsCont.courseDetailsResData.teachers[index].name == null
+                                                          ? '' : widget._courseDetailsCont.courseDetailsResData.teachers[index].name,textColor: ConstStyles.BlackColor,
                                                         fontWeight: FontWeight.bold,),
                                                     ),
 
                                                     //TODO Teacher Qualifications
                                                     SizedBox(
 
-                                                      child: AutoTextSize(text: _courseDetailsCont.courseDetailsResData.teachers[index].qualifications == null
-                                                          ? '' : _courseDetailsCont.courseDetailsResData.teachers[index].qualifications,textColor: ConstStyles.BlackColor,
+                                                      child: AutoTextSize(text: widget._courseDetailsCont.courseDetailsResData.teachers[index].qualifications == null
+                                                          ? '' : widget._courseDetailsCont.courseDetailsResData.teachers[index].qualifications,textColor: ConstStyles.BlackColor,
                                                         fontWeight: FontWeight.bold,),
                                                     ),
 
@@ -1270,9 +1283,6 @@ class CourseDetails extends GetView<CourseDetailsCont> {
       ),
     );
   }
-
-
-
 }
 
 class myItem{

@@ -34,14 +34,15 @@ dependencies:
   flutter_carousel_slider: ^1.0.8
   transparent_image:
   video_player:
-  chewie: ^1.2.2
+  chewie:
   group_radio_button:
   flutter_html:
   google_maps_flutter:
   permission_handler:
   flutter_restart: ^0.0.3
   cached_network_image: ^3.1.0
-
+  flutter_downloader: ^1.6.1
+  open_file: ^3.2.1
 
 
 dev_dependencies:

@@ -10,8 +10,8 @@ import 'package:troom/Util/Languague/Translation.dart';
 import 'package:troom/View/Home.dart';
 
 void main() async{
-
   WidgetsFlutterBinding.ensureInitialized();
+
   await GetStorage.init();
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: ConstStyles.WhiteColor));

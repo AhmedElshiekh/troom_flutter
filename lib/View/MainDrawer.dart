@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_restart/flutter_restart.dart';
 import 'package:get/get.dart';
 import 'package:troom/Controller/Drawer/MainDrawerCont.dart';
 import 'package:troom/CustomViews/CustomText.dart';
@@ -15,17 +14,39 @@ import 'package:troom/View/Home.dart';
 import 'package:troom/View/OurInstructors.dart';
 import 'package:troom/View/StudentProfile/StudentProfile.dart';
 
-class MainDrawer extends StatelessWidget {
+class MainDrawer extends StatefulWidget {
   static const Id = 'MainDrawerScreen';
+
+  @override
+  _MainDrawerState createState() => _MainDrawerState();
+}
+
+class _MainDrawerState extends State<MainDrawer> {
   MainDrawerCont cont = Get.put(MainDrawerCont());
+
+  @override
+  void initState() {
+    checkIsLogin();
+    super.initState();
+  }
+
+  bool checkIsLogin() {
+    if (cont.isLogged != null && cont.isLogged == true) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MainDrawerCont>(
-        // init: Get.put(MainDrawerCont()),
-        builder: (_){
-          print('$Id  ${cont.isLogged}');
+      // init: Get.put(MainDrawerCont()),
+        builder: (_) {
+          print('${MainDrawer.Id}  ${cont.isLogged}');
           //TODO Already Logged in
-          if(cont.isLogged != null && cont.isLogged == true){
+
+          if (checkIsLogin()) {
             return Drawer(
               child: Container(
                 color: ConstStyles.WhiteColor,
@@ -33,11 +54,10 @@ class MainDrawer extends StatelessWidget {
                   children: <Widget>[
                     //TODO Drawer Header
                     DrawerHeader(
-                        decoration:
-                        BoxDecoration(color: ConstStyles.WhiteColor),
+                        decoration: BoxDecoration(color: ConstStyles.WhiteColor),
                         padding: EdgeInsets.all(10),
                         child: LayoutBuilder(
-                          builder: (context , constrains){
+                          builder: (context, constrains) {
                             var localH = constrains.maxHeight;
                             var localW = constrains.maxWidth;
                             return Column(
@@ -45,15 +65,16 @@ class MainDrawer extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Container(
-                                  width: localW ,
-                                  height: localH ,
-                                  child: LogoContainer(colors: ConstStyles.WhiteColor,),
+                                  width: localW,
+                                  height: localH,
+                                  child: LogoContainer(
+                                    colors: ConstStyles.WhiteColor,
+                                  ),
                                 ),
                               ],
                             );
                           },
-                        )
-                    ),
+                        )),
 
                     //TODO Home
                     ListTile(
@@ -103,7 +124,7 @@ class MainDrawer extends StatelessWidget {
                         txt: 'AllRecordedCourses'.tr,
                         txtColor: ConstStyles.TextColor,
                       ),
-                      onTap: ()  {
+                      onTap: () {
                         Navigator.pop(context);
                         print('Nav :: AllCourses Clicked');
                         Get.back();
@@ -131,7 +152,7 @@ class MainDrawer extends StatelessWidget {
                         txt: 'Teachers'.tr,
                         txtColor: ConstStyles.TextColor,
                       ),
-                      onTap: ()  {
+                      onTap: () {
                         Navigator.pop(context);
                         print('Nav :: OurInstructor Clicked');
                         Get.back();
@@ -179,41 +200,38 @@ class MainDrawer extends StatelessWidget {
                         },
                       ),
                     ),
-                    
+
                     //TODO Logout
                     ListTile(
                       title: CustomText(
                         txt: 'LogOut'.tr,
                         txtColor: ConstStyles.OrangeColor,
                       ),
-                      onTap: () async{
+                      onTap: () async {
                         Navigator.pop(context);
                         print('Nav :: LogOut Clicked');
-                        if(await cont.checkLogoutRes()){
+                        if (await cont.checkLogoutRes()) {
                           // Get.offAllNamed(Home.Id);
-                          // Get.back();
-                          // Get.offAll(Home());
+                          Get.back();
+                          Get.offAll(Home());
                         }
-
                       },
                     )
-
                   ],
                 ),
               ),
             );
-          }else {
+          } else {
             return Drawer(
               child: Container(
                 color: ConstStyles.WhiteColor,
                 child: ListView(
                   children: <Widget>[
                     DrawerHeader(
-                        decoration:
-                        BoxDecoration(color: ConstStyles.WhiteColor),
+                        decoration: BoxDecoration(color: ConstStyles.WhiteColor),
                         padding: EdgeInsets.all(10),
                         child: LayoutBuilder(
-                          builder: (context , constrains){
+                          builder: (context, constrains) {
                             var localH = constrains.maxHeight;
                             var localW = constrains.maxWidth;
                             return Column(
@@ -221,9 +239,11 @@ class MainDrawer extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Container(
-                                  width: localW ,
-                                  height: localH ,
-                                  child: LogoContainer(colors: ConstStyles.WhiteColor,),
+                                  width: localW,
+                                  height: localH,
+                                  child: LogoContainer(
+                                    colors: ConstStyles.WhiteColor,
+                                  ),
                                 ),
 /*
                         SizedBox(
@@ -238,8 +258,7 @@ class MainDrawer extends StatelessWidget {
                               ],
                             );
                           },
-                        )
-                    ),
+                        )),
 
                     //TODO Home
                     ListTile(
@@ -275,7 +294,7 @@ class MainDrawer extends StatelessWidget {
                         txt: 'AllRecordedCourses'.tr,
                         txtColor: ConstStyles.TextColor,
                       ),
-                      onTap: ()  {
+                      onTap: () {
                         Navigator.pop(context);
                         print('Nav :: AllCourses Clicked');
                         Get.back();
@@ -301,7 +320,7 @@ class MainDrawer extends StatelessWidget {
                         txt: 'Teachers'.tr,
                         txtColor: ConstStyles.TextColor,
                       ),
-                      onTap: ()  {
+                      onTap: () {
                         Navigator.pop(context);
                         print('Nav :: OurInstructors Clicked');
                         Get.back();
@@ -379,7 +398,6 @@ class MainDrawer extends StatelessWidget {
               ),
             );
           }
-
-    });
+        });
   }
 }
