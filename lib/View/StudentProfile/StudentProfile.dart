@@ -22,7 +22,7 @@ import 'package:troom/View/MainDrawer.dart';
 class StudentProfile extends GetView<StudProfCont> {
   static const Id = 'StudentProfileScreen';
   StudProfCont _cont = Get.put(StudProfCont());
-  final _formKey = GlobalKey<FormState>();
+  var _formKey = GlobalKey<FormState>();
   String LOGD = 'StudentProfileView--->';
 
   @override

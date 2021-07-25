@@ -11,7 +11,7 @@ class ReqPrivateCourse extends StatelessWidget {
   String LOGD = 'ReqPrivateCourse';
   var localH;
   HomeCont _cont = Get.put(HomeCont());
-  final _formKey = GlobalKey<FormState>();
+  var _formKey = GlobalKey<FormState>();
 
   ReqPrivateCourse({this.localH});
 

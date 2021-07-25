@@ -16,7 +16,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class ContactUs extends GetView<ContactUsCont> {
   static const Id = 'ContactUsScreen';
   ContactUsCont _cont = Get.put(ContactUsCont());
-  final _formKey = GlobalKey<FormState>();
+  var _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

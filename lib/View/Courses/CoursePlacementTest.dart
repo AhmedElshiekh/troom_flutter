@@ -18,7 +18,6 @@ class CoursePlacementTest extends StatelessWidget {
   String LOGD = 'PlacementTest';
   var localH;
   CourseDetailsCont _cont = Get.put(CourseDetailsCont(null));
-  final _formKey = GlobalKey<FormState>();
 
   CoursePlacementTest({this.localH});
 

@@ -31,11 +31,10 @@ import 'package:troom/View/MainDrawer.dart';
 import 'package:troom/View/PlacementTest.dart';
 import 'package:video_player/video_player.dart';
 
-class Home extends GetView<HomeCont> {
+class Home extends GetWidget<HomeCont> {
   static const Id = 'HomeScreen';
-  // final HomeCont _homeCont = Get.put(HomeCont());
   String LOGD = 'HomeScreen';
-  final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -75,99 +74,6 @@ class Home extends GetView<HomeCont> {
             )
           ],
         ),
-/*
-        AppBar(
-          backgroundColor: Color(0xFFffc20e),
-          actions: [
-            GetBuilder<HomeCont>(
-              init: Get.put(HomeCont()),
-              builder: (_){
-                if(_homeCont.myToken == null){
-                 return Row(
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomText(
-                            txt: 'Hi',txtColor: ConstStyles.BlackColor,
-                          ),
-                          CustomText(
-                            txt: 'Gusset',txtColor: ConstStyles.BlackColor,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                          width: width * 0.2,
-                          height: appBarH,
-                          child: CachedNetworkImage(
-                            imageUrl:"https://image.freepik.com/free-photo/boy-wearing-face-masks-online-study-home_1421-4130.jpg",
-                            // imageUrl: _homeCont.ourTeachersList[0] == null ?
-                            // "https://image.freepik.com/free-photo/boy-wearing-face-masks-online-study-home_1421-4130.jpg"
-                            //     : EndPoints.ImageUrl + _homeCont.ourTeachersList[0].image,
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                // Color(0xFF692a00).withOpacity(0.5)
-                                color: ConstStyles.DarkColor,
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.fill,
-                                    colorFilter:
-                                    ColorFilter.mode(Color(0xFF692a00).withOpacity(0.5), BlendMode.lighten)),
-                              ),
-                            ),
-                            placeholder: (context, url) => CircularProgressIndicator(),
-                            errorWidget: (context, url, error) => Icon(Icons.error),
-                          )
-                      ),
-                    ],
-                  );
-                }else {
-                return  Row(
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomText(
-                            txt: 'Hi',txtColor: ConstStyles.BlackColor,
-                          ),
-                          CustomText(
-                            txt: '_homeCont.studProfResData.name',txtColor: ConstStyles.BlackColor,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                          width: width * 0.2,
-                          height: appBarH,
-                          child: CachedNetworkImage(
-                            imageUrl:"https://image.freepik.com/free-photo/boy-wearing-face-masks-online-study-home_1421-4130.jpg",
-                            // imageUrl: _homeCont.ourTeachersList[0] == null ?
-                            // "https://image.freepik.com/free-photo/boy-wearing-face-masks-online-study-home_1421-4130.jpg"
-                            //     : EndPoints.ImageUrl + _homeCont.ourTeachersList[0].image,
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                // Color(0xFF692a00).withOpacity(0.5)
-                                color: ConstStyles.DarkColor,
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.fill,
-                                    colorFilter:
-                                    ColorFilter.mode(Color(0xFF692a00).withOpacity(0.5), BlendMode.lighten)),
-                              ),
-                            ),
-                            placeholder: (context, url) => CircularProgressIndicator(),
-                            errorWidget: (context, url, error) => Icon(Icons.error),
-                          )
-                      ),
-                    ],
-                  );
-                }
-              },
-            ),
-          ],
-        ),
-*/
         drawer: GetBuilder<MainDrawerCont>(
           init: Get.put(MainDrawerCont()),
           builder: (_){

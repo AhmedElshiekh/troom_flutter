@@ -18,7 +18,6 @@ class PlacementTest extends StatelessWidget {
   String LOGD = 'PlacementTest';
   var localH;
   HomeCont _cont = Get.put(HomeCont());
-  final _formKey = GlobalKey<FormState>();
 
   PlacementTest({this.localH});
 

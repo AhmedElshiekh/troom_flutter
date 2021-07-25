@@ -29,7 +29,7 @@ class CourseDetails extends GetView<CourseDetailsCont> {
   static const Id = 'CourseDetailsScreen';
   var _courseKey;
    CourseDetailsCont _courseDetailsCont;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   CourseDetails(this._courseKey){
 

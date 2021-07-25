@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -19,11 +20,11 @@ void main() async{
 }
 
 class MyApp extends StatelessWidget {
-
-
+  GlobalKey _scaffoldkey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      key: _scaffoldkey,
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.downToUp,
       title: 'TROOM',
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       translations: Translation(),
-      locale:const Locale('ar', 'EG'),
+      // textDirection: TextDirection.rtl,
+      locale:Locale('ar', 'EG'),
       initialRoute: Home.Id,
       getPages: Pages.routes,
     );

@@ -21,9 +21,9 @@ import 'package:troom/View/Home.dart';
 class Login extends GetView<LoginCont> {
   static const Id = 'LoginScreen';
   String LOGD = 'LoginScreen-->';
-  final _formKey = GlobalKey<FormState>();
+  var _formKey = GlobalKey<FormState>();
   final LoginCont _loginCont = Get.put(LoginCont());
-  final _verifyFormKey = GlobalKey<FormState>();
+  var _verifyFormKey = GlobalKey<FormState>();
   final focus1 = FocusNode();
   final focus2 = FocusNode();
   final focus3 = FocusNode();
