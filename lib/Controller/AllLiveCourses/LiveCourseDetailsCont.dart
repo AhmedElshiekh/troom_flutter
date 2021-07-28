@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:troom/Controller/ModalHudCont.dart';
@@ -12,6 +13,8 @@ import 'package:troom/Util/LocalDataStrings.dart';
 
 class LiveCourseDetailsCont extends GetxController{
   String LOGD = 'LiveCourseDetailsCont-->';
+  Map<String,dynamic> dataOfCourseDes;
+
   var courseKey,token,appLang;
    ModalHudCont modalHudController = Get.put(ModalHudCont());
    CourseDetailsRepo _repo;
@@ -57,6 +60,28 @@ class LiveCourseDetailsCont extends GetxController{
     update();
     }
     super.onReady();
+  }
+
+  //get description of live course
+  Future LiveCourseDesData()async{
+    // modalHudController.changeisLoading(true);
+    // update();
+    token = getStorage.read(LocalDataStrings.myToken);
+    try {
+      var res = await Dio().get("https://Api.aisent.net/api/liveCourseDetails/4?token=$token");
+
+      print("This is the response of the LiveCourseDesData #######${res.data}");
+
+      dataOfCourseDes = await res.data;
+      update();
+
+      print("This is the message of the LiveCourseDesData #######${res.data}");
+
+
+      return "success";
+    } catch(e){
+      print(e);
+    }
   }
 
   Future<void> liveCourseDetailsData(courseKey,token)async{

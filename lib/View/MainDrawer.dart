@@ -41,7 +41,7 @@ class _MainDrawerState extends State<MainDrawer> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MainDrawerCont>(
-      // init: Get.put(MainDrawerCont()),
+      init: Get.put(MainDrawerCont()),
         builder: (_) {
           print('${MainDrawer.Id}  ${cont.isLogged}');
           //TODO Already Logged in

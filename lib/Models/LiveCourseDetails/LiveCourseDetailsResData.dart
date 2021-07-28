@@ -14,6 +14,7 @@ class LiveCourseDetailsResData {
     this.whatWillLearn,
     this.requirements,
     this.level,
+    this.teacher,
     this.teachers,
     this.lessons,
   });
@@ -32,6 +33,7 @@ class LiveCourseDetailsResData {
   String whatWillLearn;
   String requirements;
   String level;
+  Teacher teacher;
   List<Teacher> teachers;
   List<Lesson> lessons;
 
@@ -51,6 +53,7 @@ class LiveCourseDetailsResData {
     requirements: json["requirements"],
     level: json["level"],
     teachers: List<Teacher>.from(json["teachers"].map((x) => Teacher.fromJson(x))),
+    teacher: json["teacher"],
     lessons: List<Lesson>.from(json["lessons"].map((x) => Lesson.fromJson(x))),
   );
 
@@ -66,6 +69,7 @@ class LiveCourseDetailsResData {
     "price": price,
     "short_description": shortDescription,
     "description": description,
+    "teacher": teacher,
     "WhatWillLearn": whatWillLearn,
     "requirements": requirements,
     "level": level,

@@ -65,6 +65,8 @@ class HomeCont extends GetxController{
   var myToken,appLang;
   bool loginStatus;
 
+  bool privateReqComplete = false;
+
    List<SliderDataList> sliderList = [];
    List<CoursesDataList> coursesList = [];
    List<FeaturesDataList> featureList = [];
@@ -660,14 +662,14 @@ class HomeCont extends GetxController{
     }
   }
 
-  preparePrivateCourseReq()async{
-  privateCourseReq = PrivateCourseReq(teacherId: teacherId,courseId: courseId,startDate: startDate,note: note,
-          sat: satTime,sun: sunTime,mon: monTime,tue: tueTime,wed: wedTime,thu: thuTime,fri: friTime);
-  print('$LOGD preparePrivateCourseReq: ${jsonEncode(privateCourseReq)}');
-  await sendPrivateReq(privateCourseReq, myToken, appLang);
+  Future<String> preparePrivateCourseReq()async{
+    privateCourseReq = PrivateCourseReq(teacherId: teacherId,courseId: courseId,startDate: startDate,note: note,
+           sat: satTime,sun: sunTime,mon: monTime,tue: tueTime,wed: wedTime,thu: thuTime,fri: friTime);
+    print('$LOGD preparePrivateCourseReq: ${jsonEncode(privateCourseReq)}');
+    await sendPrivateReq(privateCourseReq, myToken, appLang);
   }
 
-  Future<void> sendPrivateReq(req,token,appLang)async{
+  Future<String> sendPrivateReq(req,token,appLang)async{
     errorsMessage.clear();
     modalHudController.changeisLoading(true);
     update();
@@ -675,36 +677,30 @@ class HomeCont extends GetxController{
       PrivateCourseReqRes quizResultRes = PrivateCourseReqRes.fromJson(value.data);
        // PrivateCourseReqRes quizResultRes = value;
       print('$LOGD sendPrivateReq res ${quizResultRes}');
+
       if(quizResultRes.status){
         privateCourseReqResData = PrivateCourseReqResData.fromJson(quizResultRes.data.toJson());
         print('$LOGD sendPrivateReq ResData ${privateCourseReqResData}');
-        update();
-        Get.snackbar('', '',backgroundColor: ConstStyles.DarkColor,
-            colorText: ConstStyles.WhiteColor,
-            titleText: CustomText(txt: 'RequestSentSuccessfully'.tr,
-              txtAlign: TextAlign.center,));
+        privateReqComplete = true;
         update();
       }else{
         quizResultRes.massage.forEach((element) {
           errorsMessage.add(element);
+          privateReqComplete = false;
           update();
         });
-        Get.snackbar('', '',backgroundColor: ConstStyles.DarkColor,
-            colorText: ConstStyles.WhiteColor,
-            titleText: CustomText(txt: errorsMessage[0],
-              txtAlign: TextAlign.center,));
       }
     }).catchError((e){
       errorsMessage.add(e.toString());
       // PrivateCourseReqRes quizResultRes = e;
       update();
       print('$LOGD sendPrivateReq catchError ${e}');
-    }).whenComplete(() {
+     }).whenComplete(() {
       modalHudController.changeisLoading(false);
       clearPrivateCourseScreen();
       // Get..back();
       update();
-    });
+     });
   }
 
   String formatTimeOfDay(TimeOfDay tod) {

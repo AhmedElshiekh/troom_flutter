@@ -20,6 +20,7 @@ class ReqPrivateCourse extends StatelessWidget {
     print('$LOGD Height= $localH');
     return Container(
       height:localH,
+      width: MediaQuery.of(context).size.width,
       child: LayoutBuilder(
         builder: (context,cons){
           var localW = cons.maxWidth;
@@ -759,7 +760,13 @@ class ReqPrivateCourse extends StatelessWidget {
                   text: 'Ok'.tr,
                   onClick: ()async{
                     _formKey.currentState.save();
-                   await _cont.preparePrivateCourseReq();
+                    await _cont.preparePrivateCourseReq();
+                    if(_cont.privateReqComplete){
+                      Get.back(result: "success");
+                    }else{
+                      Get.back();
+                    }
+                    // Get.back(result: "success");
                   },
                 )
               ],
