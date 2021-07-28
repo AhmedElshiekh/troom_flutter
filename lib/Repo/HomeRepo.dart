@@ -150,14 +150,19 @@ class HomeRepo {
     print('$LOGD sendPrivateReq req: ${jsonEncode(msgReq)}');
     print('$LOGD sendPrivateReq Url: ${EndPoints.SendPrivateReq + '?token=' + token + '&lang=' + appLang}');
 
+    print("####################$msgReq");
+    print("####################$token");
+
     try{
-      response = await this._dio.post(
+      var response = await this._dio.post(
         EndPoints.SendPrivateReq + '?token=' + token + '&lang=' + appLang,
         options: Options(headers: {
           HttpHeaders.contentTypeHeader: "application/json charset=UTF-8",
         }),
         data: jsonEncode(msgReq),
       );
+
+
       print('$LOGD sendPrivateReq response : ${response}');
       return response;
     }on DioError catch(e){

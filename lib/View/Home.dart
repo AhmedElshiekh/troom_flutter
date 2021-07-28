@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
@@ -8,7 +7,6 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:troom/Controller/Drawer/MainDrawerCont.dart';
 import 'package:troom/Controller/HomePage/HomeCont.dart';
 import 'package:troom/Controller/ModalHudCont.dart';
-import 'package:troom/Controller/Profile/StudProfCont.dart';
 import 'package:troom/CustomViews/AutoTextSize.dart';
 import 'package:troom/CustomViews/CustomText.dart';
 import 'package:troom/CustomViews/LogoContainer.dart';
@@ -30,6 +28,8 @@ import 'package:troom/View/LiveClasses/ReqPrivateCourse.dart';
 import 'package:troom/View/MainDrawer.dart';
 import 'package:troom/View/PlacementTest.dart';
 import 'package:video_player/video_player.dart';
+
+
 
 class Home extends GetView<HomeCont> {
   static const Id = 'HomeScreen';
@@ -180,7 +180,8 @@ class Home extends GetView<HomeCont> {
                 builder: (ctx, cons) {
                   var localW = cons.maxWidth;
                   var localH = cons.maxHeight;
-                  return GetBuilder<HomeCont>(builder: (_) {
+                  return GetBuilder<HomeCont>(
+                      builder: (_) {
                     if(_homeCont.controller!=null){
                       if(_homeCont.controller.value.isPlaying){
                         return Container(
@@ -225,7 +226,8 @@ class Home extends GetView<HomeCont> {
                                         child: SizedBox(
                                           width: localW,
                                           height: localH * 0.329,
-                                          child: GetBuilder<HomeCont>(builder: (_) {
+                                          child: GetBuilder<HomeCont>(
+                                              builder: (_) {
                                             return SizedBox(
                                               width: localW,
                                               height: localH * 0.329,
@@ -504,13 +506,15 @@ class Home extends GetView<HomeCont> {
                                         //TODO Req Private Course
                                         else{
                                           showDialog(
-                                            barrierDismissible: false,
+                                              barrierDismissible: false,
                                               context: _scaffoldkey.currentState.context,
                                               builder: (ctx){
-                                                return GetBuilder<ModalHudCont>(builder: (_){
+                                                return GetBuilder<ModalHudCont>(
+                                                  builder: (_){
                                                   return ModalProgressHUD(
                                                     inAsyncCall: _homeCont.modalHudController.isLoading,
-                                                    child: GetBuilder<HomeCont>(builder: (_){
+                                                    child: GetBuilder<HomeCont>(
+                                                      builder: (_){
                                                       //TODO Dialog
                                                       return AlertDialog(
                                                         content: ReqPrivateCourse(localH: localH * 0.85,),
@@ -518,7 +522,13 @@ class Home extends GetView<HomeCont> {
                                                     },),
                                                   );
                                                 },);
-                                              });
+                                              }).then((value){
+                                                if(value == "success"){
+                                                  Get.snackbar('تم استلام طلبك بنجاح','',backgroundColor: Colors.amber);
+                                                }else{
+                                                  Get.snackbar('فشل ارسال الطلب', 'حاول مره اخري',backgroundColor: Colors.amber);
+                                                }
+                                          });
                                         }
                                       },
                                       child: SizedBox(
@@ -702,7 +712,8 @@ class Home extends GetView<HomeCont> {
                                             child: ListView.builder(
                                               itemCount: _homeCont.coursesList.length > 3 ? 3 : _homeCont.coursesList.length,
                                               itemBuilder: (context,index){
-                                                return GetBuilder<HomeCont>(builder: (_){
+                                                return GetBuilder<HomeCont>(
+                                                    builder: (_){
                                                   // print("sssssssssssssssss ${_homeCont.coursesList[index]}");
 
                                                   if(_homeCont.coursesList[index] != null){
@@ -927,10 +938,12 @@ class Home extends GetView<HomeCont> {
                                           barrierDismissible: false,
                                           context: context,
                                           builder: (context){
-                                            return GetBuilder<ModalHudCont>(builder: (_){
+                                            return GetBuilder<ModalHudCont>(
+                                              builder: (_){
                                               return ModalProgressHUD(
                                                 inAsyncCall: _homeCont.modalHudController.isLoading,
-                                                child: GetBuilder<HomeCont>(builder: (_){
+                                                child: GetBuilder<HomeCont>(
+                                                  builder: (_){
                                                   //TODO Dialog
                                                   return AlertDialog(
 
@@ -1166,7 +1179,8 @@ class Home extends GetView<HomeCont> {
                                               scrollDirection: Axis.horizontal,
                                               itemCount:_homeCont.liveCoursesList.length > 3 ? 3 : _homeCont.liveCoursesList.length,
                                               itemBuilder: (context,index){
-                                               return GetBuilder<HomeCont>(builder: (_){
+                                               return GetBuilder<HomeCont>(
+                                                   builder: (_){
                                                   if(_homeCont.liveCoursesList[index]!= null){
                                                     return InkWell(
                                                       onTap: (){
@@ -1554,7 +1568,8 @@ class Home extends GetView<HomeCont> {
                                 ),
                                 SizedBox(height: localH * 0.01,),
 
-                                GetBuilder<HomeCont>(builder: (_){
+                                GetBuilder<HomeCont>(
+                                    builder: (_){
                                   if(item.btnUrl != null){
                                     return SizedBox(
                                       height: localH * 0.07,

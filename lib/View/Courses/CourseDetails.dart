@@ -159,7 +159,8 @@ class _CourseDetailsState extends State<CourseDetails> {
                           ),
 
                           //TODO buy Now
-                          GetBuilder<CourseDetailsCont>(builder: (_){
+                          GetBuilder<CourseDetailsCont>(
+                              builder: (_){
                             //TODO owner == null or == false
                             if(widget._courseDetailsCont.courseDetailsResData.owner!=null && !widget._courseDetailsCont.courseDetailsResData.owner)
                             {
@@ -181,7 +182,8 @@ class _CourseDetailsState extends State<CourseDetails> {
                                       //   ,txtColor: ConstStyles.DarkColor,),
                                       SizedBox(width: localW * 0.02,),
 
-                                      GetBuilder<CourseDetailsCont>(builder: (_){
+                                      GetBuilder<CourseDetailsCont>(
+                                          builder: (_){
                                         return OrangeBtn(text: 'BuyNow'.tr,onClick: ()async{
                                           //TODO User Not Logged In Can't buy
                                           if(widget._courseDetailsCont.getStorage.read(LocalDataStrings.isLogged) == null
@@ -296,7 +298,8 @@ class _CourseDetailsState extends State<CourseDetails> {
                                       //   ,txtColor: ConstStyles.DarkColor,),
                                       SizedBox(width: localW * 0.02,),
 
-                                      GetBuilder<CourseDetailsCont>(builder: (_){
+                                      GetBuilder<CourseDetailsCont>(
+                                          builder: (_){
                                         return OrangeBtn(text: 'BuyNow'.tr,onClick: ()async{
                                           //TODO User Not Logged In Can't buy
                                           if(widget._courseDetailsCont.getStorage.read(LocalDataStrings.isLogged) == null
@@ -372,10 +375,12 @@ class _CourseDetailsState extends State<CourseDetails> {
                                           //   content: CoursePlacementTest(localH: localH * 0.85,)
                                           //   // content: CoursePlacementTest(placementKey: _courseDetailsCont.courseDetailsResData.placementTest,)
                                           // );
-                                          return GetBuilder<ModalHudCont>(builder: (_){
+                                          return GetBuilder<ModalHudCont>(
+                                            builder: (_){
                                             return ModalProgressHUD(
                                               inAsyncCall: widget._courseDetailsCont.modalHudController.isLoading,
-                                              child: GetBuilder<CourseDetailsCont>(builder: (_){
+                                              child: GetBuilder<CourseDetailsCont>(
+                                                builder: (_){
                                                 //TODO Dialog
                                                 return AlertDialog(
                                                   content: CoursePlacementTest(localH: localH * 0.85,),
@@ -457,7 +462,8 @@ class _CourseDetailsState extends State<CourseDetails> {
 */
 
                           //TODO Current Lesson Name And Video
-                          GetBuilder<CourseDetailsCont>(builder: (_){
+                          GetBuilder<CourseDetailsCont>(
+                              builder: (_){
                             if(widget._courseDetailsCont.courseDetailsResData.currentLessonKey == null){
                               return Container();
                             }else{
@@ -558,8 +564,6 @@ class _CourseDetailsState extends State<CourseDetails> {
                                       ),
 */
                                     ),
-
-
                                   ],
                                 ),
                               );
@@ -592,7 +596,8 @@ class _CourseDetailsState extends State<CourseDetails> {
                                 SizedBox(height: localH * 0.02,),
 
                                 //TODO Course
-                                GetBuilder<CourseDetailsCont>(builder: (_){
+                                GetBuilder<CourseDetailsCont>(
+                                    builder: (_){
                                   if(widget._courseDetailsCont.courseDetailsResData.chapters != null
                                       && widget._courseDetailsCont.courseDetailsResData.chapters.length > 0 ){
                                     return Expanded(
@@ -615,12 +620,12 @@ class _CourseDetailsState extends State<CourseDetails> {
                                                 },
                                                 body: Container(
                                                   color: ConstStyles.WhiteColor,
-                                                  height: localH * 0.25,
+                                                  height: localH * 0.30,
                                                   child: ListView.builder(
                                                       itemCount: item.body.length,
                                                       itemBuilder: (context,lessonIndex){
                                                         return SizedBox(
-                                                          height: localH * 0.25,
+                                                          height: localH * 0.30,
                                                           child: Column(
                                                             mainAxisAlignment: MainAxisAlignment.start,
                                                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -694,7 +699,8 @@ class _CourseDetailsState extends State<CourseDetails> {
                                                                 child: Row(
                                                                   mainAxisAlignment: MainAxisAlignment.end,
                                                                   children: [
-                                                                    GetBuilder<CourseDetailsCont>(builder: (_){
+                                                                    GetBuilder<CourseDetailsCont>(
+                                                                        builder: (_){
                                                                       return OrangeBtn(
                                                                         txtColor: ConstStyles.WhiteColor,
                                                                         text: 'Next'.tr,
@@ -705,10 +711,12 @@ class _CourseDetailsState extends State<CourseDetails> {
                                                                             barrierDismissible: false,
                                                                               context: context,
                                                                               builder: (context){
-                                                                                return GetBuilder<ModalHudCont>(builder: (_){
+                                                                                return GetBuilder<ModalHudCont>(
+                                                                                  builder: (_){
                                                                                   return ModalProgressHUD(
                                                                                     inAsyncCall: widget._courseDetailsCont.modalHudController.isLoading,
-                                                                                    child: GetBuilder<CourseDetailsCont>(builder: (_){
+                                                                                    child: GetBuilder<CourseDetailsCont>(
+                                                                                      builder: (_){
                                                                                       //TODO Dialog
                                                                                       return AlertDialog(
                                                                                         content: Container(
@@ -734,7 +742,8 @@ class _CourseDetailsState extends State<CourseDetails> {
                                                                                                 ),
 
                                                                                                 Html(data: widget._courseDetailsCont.lessonDataResData.summary == null ? ' ' :widget._courseDetailsCont.lessonDataResData.summary ,),
-                                                                                                GetBuilder<CourseDetailsCont>(builder: (_){
+                                                                                                GetBuilder<CourseDetailsCont>(
+                                                                                                    builder: (_){
                                                                                                   print(' GetBuilder Check Lesson Closed = ${widget._courseDetailsCont.lessonDataResData.lessonClosed}');
 
                                                                                                   if(!widget._courseDetailsCont.lessonDataResData.endQuizLesson){
@@ -784,7 +793,8 @@ class _CourseDetailsState extends State<CourseDetails> {
                                                               //TODO Chapter Quiz Btn
                                                               SizedBox(
                                                                 height: localH * 0.05,
-                                                                child: GetBuilder<CourseDetailsCont>(builder: (_){
+                                                                child: GetBuilder<CourseDetailsCont>(
+                                                                    builder: (_){
                                                                   if( widget._courseDetailsCont.courseDetailsResData.chapters[lessonIndex] != null &&
                                                                       widget._courseDetailsCont.courseDetailsResData.chapters[lessonIndex].quiz){
                                                                     return OrangeBtn(text: 'ChapterQuiz'.tr, onClick: (){
@@ -943,7 +953,8 @@ class _CourseDetailsState extends State<CourseDetails> {
 
                           //TODO Lesson Objectives
                           Container(
-                            child: GetBuilder<CourseDetailsCont>(builder: (_){
+                            child: GetBuilder<CourseDetailsCont>(
+                                builder: (_){
                               if(widget._courseDetailsCont.lessonDataResData.objective == null){
                                 return Container();
                               }else{
@@ -1171,6 +1182,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                             height: localH * 0.3,
                             padding: EdgeInsets.only(left: localW * 0.01,right: localW * 0.01),
                             child: GetBuilder<CourseDetailsCont>(
+
                               builder: (_){
                                 if(widget._courseDetailsCont.courseDetailsResData.teachers != null &&
                                     widget._courseDetailsCont.courseDetailsResData.teachers.length >0){
@@ -1204,7 +1216,8 @@ class _CourseDetailsState extends State<CourseDetails> {
                                                     SizedBox(
                                                       height: localH * 0.1,
                                                       width: localW * 0.1,
-                                                      child: GetBuilder<CourseDetailsCont>(builder: (_){
+                                                      child: GetBuilder<CourseDetailsCont>(
+                                                          builder: (_){
                                                         if(widget._courseDetailsCont.courseDetailsResData.teachers !=null &&
                                                             widget._courseDetailsCont.courseDetailsResData.teachers[index].image !=null){
                                                           return Container(
