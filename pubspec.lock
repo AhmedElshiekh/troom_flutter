@@ -181,6 +181,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.8"
+  flutter_downloader:
+    dependency: "direct main"
+    description:
+      name: flutter_downloader
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.6.1"
   flutter_html:
     dependency: "direct main"
     description:
@@ -248,7 +255,7 @@ packages:
       name: get
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.5"
+    version: "4.1.4"
   get_storage:
     dependency: "direct main"
     description:
@@ -389,6 +396,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0+1"
+  open_file:
+    dependency: "direct main"
+    description:
+      name: open_file
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.1"
   path:
     dependency: transitive
     description:
