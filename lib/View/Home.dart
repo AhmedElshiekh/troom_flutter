@@ -57,12 +57,8 @@ class Home extends GetWidget<HomeCont> {
                     CustomText(
                       txt: 'WelcomeTo'.tr,txtColor: ConstStyles.BlackColor,
                     ),
-                    CustomText(
-                      txt: 'AppName'.tr,txtColor: ConstStyles.BlackColor,
-                    ),
                   ],
                 ),
-
                 SizedBox(
                     width: width * 0.22,
                     height: appBarH,
@@ -287,6 +283,7 @@ class Home extends GetWidget<HomeCont> {
                                                   height: localH * 0.35,
                                                   width: localW * 0.45,
                                                   child: Container(
+                                                    padding: EdgeInsets.symmetric(horizontal: 5),
                                                     decoration: BoxDecoration(
                                                       color: Color(0xFF692a00).withOpacity(0.5),
                                                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -294,11 +291,14 @@ class Home extends GetWidget<HomeCont> {
                                                     ),
                                                     child: Column(
                                                       mainAxisAlignment: MainAxisAlignment.end,
-                                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                                      crossAxisAlignment: "AllRecordedCourses".tr == "AllRecordedCourses" ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                                                       children: [
-                                                        CustomText(txt: 'AllRecordedCourses'.tr,txtColor: ConstStyles.WhiteColor,
+                                                        CustomText(
+                                                          txt: 'AllRecordedCourses'.tr,
+                                                          txtColor: ConstStyles.WhiteColor,
                                                           fontWeight: FontWeight.bold,
-                                                          fontSize: localW * 0.07,),
+                                                          fontSize: localW * 0.07,
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
@@ -368,6 +368,7 @@ class Home extends GetWidget<HomeCont> {
                                                   height: localH * 0.35,
                                                   width: localW * 0.45,
                                                   child: Container(
+                                                    padding: EdgeInsets.symmetric(horizontal: 5),
                                                     decoration: BoxDecoration(
                                                       color: Color(0xFF692a00).withOpacity(0.5),
                                                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -500,6 +501,7 @@ class Home extends GetWidget<HomeCont> {
                                   ],
                                 ),
                               ),
+
                               SizedBox(
                                 width: localW,
                                 child: Row(
