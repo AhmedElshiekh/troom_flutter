@@ -51,8 +51,9 @@ class StudentProfile extends GetView<StudProfCont> {
                                 children: [
                                   //TODO Bar
                                   Container(
+                                    height: localH * .47,
                                     width: localW,
-                                    padding: EdgeInsets.only(bottom: localH * 0.05),
+                                    padding: EdgeInsets.only(bottom: localH * 0.05,top: localH * 0.01),
                                     color: ConstStyles.DarkColor,
                                     child: Column(
                                       children: [
@@ -60,20 +61,20 @@ class StudentProfile extends GetView<StudProfCont> {
                                         //TODO Profile Image
                                         SizedBox(
                                           width: localW * 0.25,
-                                          child: CircleAvatar(
-                                            radius: 50,
-                                            backgroundColor:
-                                            ConstStyles
-                                                .WhiteColor,
-                                            child: LogoContainer(),
-                                          ),
+                                          child: _cont.studProfResData.image != null ? ClipRRect(
+                                            borderRadius: BorderRadius.circular(50),
+                                            child: Image(
+                                              image: NetworkImage(EndPoints.ImageUrl + _cont.studProfResData.image),
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ) : null,
                                         ),
                                         //TODO User Name
                                         CustomText(
                                           txt: _cont.studProfResData.name == null ? '' : _cont.studProfResData.name,
                                         ),
 
-                                        SizedBox(height: localH * 0.05,),
+                                        SizedBox(height: localH * 0.025,),
 
                                         //TODO My profile
                                         InkWell(
@@ -226,11 +227,11 @@ class StudentProfile extends GetView<StudProfCont> {
                                                 thickness: 1,
                                                 color: ConstStyles.BlackColor,
                                               ),
-                                              SizedBox(height: localH * 0.03,),
+                                              SizedBox(height: localH * 0.015,),
 
                                            SizedBox(
                                              width: localW,
-                                             height: localH * 0.6,
+                                             height: localH * 0.33,
                                              child: ListView.builder(
                                                  itemCount: _cont.classesList != null
                                                      ? _cont.classesList.length
@@ -265,11 +266,11 @@ class StudentProfile extends GetView<StudProfCont> {
                                                 thickness: 1,
                                                 color: ConstStyles.BlackColor,
                                               ),
-                                              SizedBox(height: localH * 0.03,),
+                                              SizedBox(height: localH * 0.015,),
 
                                               SizedBox(
                                                 width: localW,
-                                                height: localH * 0.6,
+                                                height: localH * 0.33,
                                                 child: ListView.builder(
                                                     itemCount: _cont.privateClassesList != null
                                                         ? _cont.privateClassesList.length

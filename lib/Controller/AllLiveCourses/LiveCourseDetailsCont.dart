@@ -68,7 +68,7 @@ class LiveCourseDetailsCont extends GetxController{
     // update();
     token = getStorage.read(LocalDataStrings.myToken);
     try {
-      var res = await Dio().get("https://Api.aisent.net/api/liveCourseDetails/4?token=$token");
+      var res = await Dio().get("https://Api.aisent.net/api/liveCourseDetails/${this.courseKey}?token=$token");
 
       print("This is the response of the LiveCourseDesData #######${res.data}");
 
