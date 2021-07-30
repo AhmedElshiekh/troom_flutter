@@ -28,6 +28,7 @@ class PlacementTest extends StatelessWidget {
       textDirection: TextDirection.ltr,
       child: Container(
         height:localH,
+        width: MediaQuery.of(context).size.width,
         child: LayoutBuilder(
           builder: (context,cons){
             var localW = cons.maxWidth;

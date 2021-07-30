@@ -515,12 +515,12 @@ class LiveCourseDetails extends StatelessWidget {
                               width: localW,
                               color: ConstStyles.WhiteColor,
                               margin: EdgeInsets.only(
-                                  left: localW * 0.15,
-                                  right: localW * 0.15,
-                                  top: localH * 0.01),
+                                  left: localW * 0.04,
+                                  right: localW * 0.04,
+                                  top: localH * 0.02),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                // mainAxisAlignment: MainAxisAlignment.center,
+                                // crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   // //TODO Instructor
                                   // Padding(
@@ -548,7 +548,7 @@ class LiveCourseDetails extends StatelessWidget {
                                           child: Column(
                                             children: [
                                               Container(
-                                                height: localH * 0.1,
+                                                height: localH * 0.13,
                                                 width: localW * .8,
                                                 child: Image(
                                                   image: NetworkImage("${EndPoints.ImageUrl}${_courseDetailsCont.dataOfCourseDes["data"]['image']}"),
@@ -556,40 +556,57 @@ class LiveCourseDetails extends StatelessWidget {
                                                 ),
                                               ),
                                               SizedBox(height:10),
-                                              Row(
-                                                children: [
-                                                  Container(
-                                                    padding: EdgeInsets.only(right: 10),
-                                                    height: localH * .09,
-                                                    child: ClipRRect(
-                                                      borderRadius: BorderRadius.circular(50),
-                                                      child: Image(
-                                                        image: NetworkImage("${EndPoints.ImageUrl}${_courseDetailsCont.dataOfCourseDes["data"]['teachers'][0]['image']}"),
-                                                        fit: BoxFit.contain,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(width:10),
-                                                  CustomText(
-                                                    txt: _courseDetailsCont.dataOfCourseDes["data"]['teachers'][0]['name'],
-                                                    txtColor: ConstStyles.DarkColor,
-                                                    txtAlign: TextAlign.center,
-                                                  ),
-                                                ],
+                                              // Row(
+                                              //   children: [
+                                              //     Container(
+                                              //       padding: EdgeInsets.only(right: 10),
+                                              //       height: localH * .09,
+                                              //       child: ClipRRect(
+                                              //         borderRadius: BorderRadius.circular(50),
+                                              //         child: Image(
+                                              //           image: NetworkImage("${EndPoints.ImageUrl}${_courseDetailsCont.dataOfCourseDes["data"]['teachers'][0]['image']}"),
+                                              //           fit: BoxFit.contain,
+                                              //         ),
+                                              //       ),
+                                              //     ),
+                                              //     SizedBox(width:10),
+                                              //     CustomText(
+                                              //       txt: _courseDetailsCont.dataOfCourseDes["data"]['teachers'][0]['name'],
+                                              //       txtColor: ConstStyles.DarkColor,
+                                              //       txtAlign: TextAlign.center,
+                                              //     ),
+                                              //   ],
+                                              // ),
+                                              Container(
+                                                width: localW * .8,
+                                                child: CustomText(
+                                                  txt: "Lessons",
+                                                  fontSize: 22,
+                                                  txtColor: ConstStyles.DarkColor,
+                                                  txtAlign: TextAlign.end,
+                                                ),
                                               ),
+                                              SizedBox(height:10),
                                               Container(
                                                 height: localH * .15,
-                                                width: localW *.6,
+                                                width: localW *.8,
                                                 child: ListView.builder(
                                                   itemCount: _courseDetailsCont.dataOfCourseDes["data"]['lessons'].length,
                                                   itemBuilder: (context,index){
                                                     return Column(
                                                       children: [
                                                         SizedBox(height:5),
-                                                        CustomText(
-                                                          txt: _courseDetailsCont.dataOfCourseDes["data"]['lessons'][index]['name'],
-                                                          txtColor: ConstStyles.DarkColor,
-                                                          txtAlign: TextAlign.center,
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.end,
+                                                          children: [
+                                                            CustomText(
+                                                              txt:  _courseDetailsCont.dataOfCourseDes["data"]['lessons'][index]['name'],
+                                                              txtColor: ConstStyles.DarkColor,
+                                                              txtAlign: TextAlign.start,
+                                                            ),
+                                                            SizedBox(width:5),
+                                                            Icon(Icons.done_sharp,color:Colors.green),
+                                                          ],
                                                         ),
                                                       ],
                                                     );
@@ -621,7 +638,9 @@ class LiveCourseDetails extends StatelessWidget {
                             //TODO Course OverView
                             Container(
                               margin: EdgeInsets.only(
-                                  left: localW * 0.15, right: localW * 0.15),
+                                  left: localW * 0.04,
+                                  right: localW * 0.04,
+                                  bottom: localH * 0.01),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
@@ -788,10 +807,9 @@ class LiveCourseDetails extends StatelessWidget {
                             Container(
                               color: ConstStyles.WhiteColor,
                               margin: EdgeInsets.only(
-                                  left: localW * 0.15,
-                                  right: localW * 0.15,
-                                  top: localH * 0.015,
-                                  bottom: localH * 0.02),
+                                  left: localW * 0.04,
+                                  right: localW * 0.04,
+                                  bottom: localH * 0.01),
                               height: localH * 0.3,
                               padding: EdgeInsets.only(
                                   left: localW * 0.01, right: localW * 0.01),
