@@ -257,7 +257,7 @@ class HomeCont extends GetxController{
         if (!controller.value.isPlaying ){
           if(controller.value.duration.inSeconds ==controller.value.position.inSeconds){
             print('$LOGD ------> videoEnded ${controller.value.isPlaying.toString()}');
-            // Get.offAllNamed(Home.Id);
+           // Get.offAllNamed(Home.Id);
             update();
           }
         }
