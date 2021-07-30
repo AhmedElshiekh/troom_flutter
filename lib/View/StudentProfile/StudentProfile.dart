@@ -192,9 +192,7 @@ class StudentProfile extends GetView<StudProfCont> {
                                                 width: localW,
                                                   height: localH * 0.6,
                                                   child: ListView.builder(
-                                                    itemCount: _cont.coursesList != null
-                                                        ? _cont.coursesList.length
-                                                        : 0,
+                                                    itemCount: _cont.coursesList != null ? _cont.coursesList.length : 0,
                                                     itemBuilder: (context,index){
                                                       if(_cont.coursesList.length > 0){
                                                         return InkWell(
@@ -455,7 +453,7 @@ class StudentProfile extends GetView<StudProfCont> {
   Widget myCoursesItem(localH,localW,MyCoursesDataList item){
     return Container(
       margin: EdgeInsets.only(bottom: localH * 0.02),
-      height: localH * 0.85,
+      height: localH ,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -528,8 +526,7 @@ class StudentProfile extends GetView<StudProfCont> {
 
                                 Positioned.fill(
                                     child: Align(
-                                      alignment: Alignment
-                                          .center,
+                                      alignment: Alignment.center,
                                       child: SizedBox(
                                         width: localW * 0.15,
                                         child: Divider(
@@ -629,6 +626,120 @@ class StudentProfile extends GetView<StudProfCont> {
               color: ConstStyles.BlackColor,
             ),
           ),
+
+          Center(
+            child: OrangeBtn(
+              btnColor: ConstStyles.BlueColor,
+              text: 'Score',
+              onClick: (){
+                return Get.defaultDialog(
+                  title : 'YourScore',
+                  content:Column(
+                    children: [
+                      SizedBox(height:10),
+                      FlatButton(
+                        color: Colors.amber,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Text("Placement"),
+                        onPressed: (){
+                              return Get.defaultDialog(
+                                title : 'Placement',
+                                content: Column(
+                                  children: [
+                                    SizedBox(height:10),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text("Score: "),
+                                        Text("${item.placement['score']} /"),
+                                        Text("${item.placement['total']}"),
+                                        SizedBox(width:15),
+                                        "${item.placement['pass']}" == "0" ? Text("X",style: TextStyle(color: Colors.red)) : Icon(Icons.done,color: Colors.green),
+                                      ],
+                                    ),
+                                    SizedBox(height:10),
+                                    Container(
+                                      width: localW,
+                                      child: FlatButton(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10.0),
+                                          ),
+                                          color: Colors.red,
+                                          child: Text("Back"),
+                                          onPressed: (){
+                                            Get.back();
+                                          }
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                        },
+                      ),
+                      SizedBox(height:10),
+                      FlatButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.amber,
+                        child: Text("Final Exam"),
+                        onPressed: (){
+                              return Get.defaultDialog(
+                                title : 'Final Exam',
+                                content: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text("Score: "),
+                                        Text("${item.finalExam['score']} /"),
+                                        Text("${item.finalExam['total']}"),
+                                        SizedBox(width:15),
+                                        "${item.finalExam['pass']}" == "0" ? Text("X",style: TextStyle(color: Colors.red)) : Icon(Icons.done,color: Colors.green),
+                                      ],
+                                    ),
+                                    SizedBox(height:10),
+                                    Container(
+                                      width: localW,
+                                      child: FlatButton(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10.0),
+                                          ),
+                                          color: Colors.red,
+                                          child: Text("Back"),
+                                          onPressed: (){
+                                            Get.back();
+                                          }
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                        },
+                      ),
+                      SizedBox(height:10),
+                      Container(
+                        width: localW,
+                        child: FlatButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          color: Colors.red,
+                          child: Text("Back"),
+                          onPressed: (){
+                            Get.back();
+                          }
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+
         ],
       ),
     );

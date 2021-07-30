@@ -9,6 +9,8 @@ class MyCoursesResData {
     this.level,
     this.discountPrice,
     this.teachers,
+    this.placement,
+    this.finalExam,
     this.teacherImg,
   });
 
@@ -21,6 +23,8 @@ class MyCoursesResData {
   String level;
   int discountPrice;
   List<Teacher> teachers;
+  Map<String, dynamic> placement;
+  Map<String, dynamic> finalExam;
   String teacherImg;
 
   factory MyCoursesResData.fromJson(Map<String, dynamic> json) => MyCoursesResData(
@@ -33,6 +37,8 @@ class MyCoursesResData {
     level:json["level"] == null ? null : json["level"],
     discountPrice:json["discountPrice"] == null ? null : json["discountPrice"],
     teachers:json["teachers"] == null ? null : List<Teacher>.from(json["teachers"].map((x) => Teacher.fromJson(x))),
+    placement:json["placement"] == null ? null : json["placement"],
+    finalExam:json["exam"] == null ? null : json["exam"],
     teacherImg:json["teacher_img"] == null ? null : json["teacher_img"],
   );
 
@@ -46,6 +52,8 @@ class MyCoursesResData {
     "level":level == null ? null : level,
     "discountPrice":discountPrice == null ? null : discountPrice,
     "teachers":teachers == null ? null : List<dynamic>.from(teachers.map((x) => x.toJson())),
+    "placement":placement == null ? null : placement,
+    "exam":finalExam == null ? null : finalExam,
     "teacher_img":teacherImg == null ? null : teacherImg,
   };
 }

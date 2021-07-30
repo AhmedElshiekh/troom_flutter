@@ -24,5 +24,8 @@ class MyCoursesDataList {
 
   List<Teacher> get teacher => _coursesResData.teachers;
 
+  Map<String, dynamic> get placement => _coursesResData.placement;
+  Map<String, dynamic> get finalExam => _coursesResData.finalExam;
+
   String get teacherImg => _coursesResData.teacherImg;
 }
