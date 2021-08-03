@@ -26,7 +26,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   auto_size_text: ^3.0.0-nullsafety.0
-  get:
+  get: 4.1.4
   get_storage:
   dio:
   webview_flutter: ^2.0.8
