@@ -3,12 +3,19 @@ import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:troom/Controller/HomePage/HomeCont.dart';
 import 'package:troom/Controller/ModalHudCont.dart';
+<<<<<<< HEAD
+=======
+import 'package:troom/CustomViews/AppBarText.dart';
+>>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
 import 'package:troom/CustomViews/CustomText.dart';
 import 'package:troom/CustomViews/LogoContainer.dart';
 import 'package:troom/Models/OurTeachers/OurTeachersDataList.dart';
 import 'package:troom/Util/ConstStyles.dart';
 import 'package:troom/Util/EndPoints.dart';
+<<<<<<< HEAD
 import 'package:troom/View/Instructors%20Details.dart';
+=======
+>>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
 import 'package:troom/View/MainDrawer.dart';
 
 class OurInstructor extends StatelessWidget {
@@ -19,8 +26,12 @@ class OurInstructor extends StatelessWidget {
   Widget build(BuildContext context) {
     var appBarH = AppBar().preferredSize.height;
     return Scaffold(
+<<<<<<< HEAD
       appBar: AppBar(title: Image.asset(
         'assets/images/logo.png', fit: BoxFit.contain, height: appBarH,),
+=======
+      appBar: AppBar( title: Image.asset('assets/images/logo.png',fit: BoxFit.contain,height: appBarH,),
+>>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
         backgroundColor: ConstStyles.WhiteColor,
         iconTheme: IconThemeData(color: ConstStyles.DarkColor),
       ),
@@ -71,11 +82,17 @@ class OurInstructor extends StatelessWidget {
                     Container(
                       width: localW,
                       height: localH * 0.08,
+<<<<<<< HEAD
                       margin: EdgeInsets.only(
                           left: localW * 0.075, right: localW * 0.075),
                       child: CustomText(
                         txt: '${'WeFound'.tr} ${_homeCont.ourTeachersList
                             .length}  ${'TeachersForYou'.tr}',
+=======
+                      margin: EdgeInsets.only(left: localW * 0.075,right: localW * 0.075),
+                      child: CustomText(
+                        txt: '${'WeFound'.tr} ${_homeCont.ourTeachersList.length}  ${'TeachersForYou'.tr}',
+>>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
                         fontSize: localW * 0.06,
                         txtColor: ConstStyles.BlueColor,
                       ),
@@ -95,6 +112,7 @@ class OurInstructor extends StatelessWidget {
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
                               if (_homeCont.ourTeachersList.length > 0) {
+<<<<<<< HEAD
                                 return GestureDetector(
                                   onTap: () {
 
@@ -112,11 +130,20 @@ class OurInstructor extends StatelessWidget {
                                       color: ConstStyles.WhiteColor,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(20.0)),
+=======
+                                return Container(
+                                  margin: EdgeInsets.only(
+                                      left: localW * 0.05, right: localW * 0.05, bottom: localW * 0.05),
+                                    decoration: BoxDecoration(
+                                      color: ConstStyles.WhiteColor,
+                                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+>>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
                                       boxShadow: [
                                         BoxShadow(
                                           color: Colors.grey,
                                           blurRadius: 2.0,
                                           spreadRadius: 1.0,
+<<<<<<< HEAD
                                           offset: Offset(2.0,
                                               2.0), // shadow direction: bottom right
                                         )
@@ -125,6 +152,14 @@ class OurInstructor extends StatelessWidget {
                                     child: ourTeacherListItem(localW, localH,
                                         _homeCont.ourTeachersList[index]),
                                   ),
+=======
+                                          offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                        )
+                                      ],
+                                    ),
+                                  child: ourTeacherListItem(localW, localH,
+                                      _homeCont.ourTeachersList[index]),
+>>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
                                 );
                               } else {
                                 return SizedBox(
@@ -149,7 +184,11 @@ class OurInstructor extends StatelessWidget {
   }
 
   //TODO Our Teacher List Item
+<<<<<<< HEAD
   Widget ourTeacherListItem(localW, localH, OurTeachersDataList item) {
+=======
+  Widget ourTeacherListItem(localW,localH,OurTeachersDataList item){
+>>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
     return Column(
       mainAxisAlignment:
       MainAxisAlignment.start,
@@ -157,7 +196,11 @@ class OurInstructor extends StatelessWidget {
       CrossAxisAlignment.center,
       children: [
         Container(
+<<<<<<< HEAD
           width: localW,
+=======
+          width: localW ,
+>>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
           height: localH * 0.25,
           decoration: BoxDecoration(
             image: DecorationImage(
