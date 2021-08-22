@@ -154,10 +154,7 @@ class _MainDrawerState extends State<MainDrawer> {
                         txtColor: ConstStyles.TextColor,
                       ),
                       onTap: () {
-                        Navigator.pop(context);
-                        print('Nav :: OurInstructor Clicked');
-                        Get.back();
-                        Get.toNamed(OurInstructor.Id);
+                       Navigator.push(context,MaterialPageRoute(builder: (_)=>OurInstructor()));
                       },
                     ),
 
