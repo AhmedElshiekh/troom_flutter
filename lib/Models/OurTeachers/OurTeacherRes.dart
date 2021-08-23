@@ -7,6 +7,8 @@ OurTeacherRes ourTeacherResFromJson(String str) => OurTeacherRes.fromJson(json.d
 String ourTeacherResToJson(OurTeacherRes data) => json.encode(data.toJson());
 
 class OurTeacherRes {
+
+
   OurTeacherRes({
     this.data,
     this.status,
@@ -16,6 +18,7 @@ class OurTeacherRes {
   List<OurTeachersResData> data;
   bool status;
   List<String> massage;
+
 
   factory OurTeacherRes.fromJson(Map<String, dynamic> json) => OurTeacherRes(
     data: json["data"] == null ? null :  List<OurTeachersResData>.from(json["data"].map((x) => OurTeachersResData.fromJson(x))),

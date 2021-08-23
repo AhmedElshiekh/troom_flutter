@@ -53,8 +53,6 @@ import 'package:troom/Repo/StudProfRepo.dart';
 import 'package:troom/Util/ConstStyles.dart';
 import 'package:troom/Util/EndPoints.dart';
 import 'package:troom/Util/LocalDataStrings.dart';
-import 'package:troom/View/Auth/Login.dart';
-import 'package:troom/View/Home.dart';
 import 'package:video_player/video_player.dart';
 
 class HomeCont extends GetxController{

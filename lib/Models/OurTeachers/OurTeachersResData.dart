@@ -3,11 +3,13 @@ class OurTeachersResData {
     this.key,
     this.name,
     this.image,
+    this.courses
   });
 
   int key;
   String name;
   String image;
+  List<Map> courses;
 
   factory OurTeachersResData.fromJson(Map<String, dynamic> json) => OurTeachersResData(
     key:json["key"] == null ? null : json["key"],

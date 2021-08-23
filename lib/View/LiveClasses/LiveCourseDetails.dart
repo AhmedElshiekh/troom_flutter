@@ -113,57 +113,7 @@ class LiveCourseDetails extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    width: localW * 0.2,
-                                                    height: localH * 0.06,
-                                                    decoration: BoxDecoration(
-                                                        shape:
-                                                            BoxShape.rectangle,
-                                                        color: ConstStyles
-                                                            .DarkColor),
-                                                    child: Center(
-                                                        child: CustomText(
-                                                      txt: _courseDetailsCont
-                                                                  .courseDetailsResData
-                                                                  .category ==
-                                                              null
-                                                          ? ''
-                                                          : _courseDetailsCont
-                                                              .courseDetailsResData
-                                                              .category,
-                                                      fontSize: localW * 0.05,
-                                                    )),
-                                                  ),
-                                                  SizedBox(
-                                                    width: localW * 0.05,
-                                                  ),
-                                                  Container(
-                                                    width: localW * 0.2,
-                                                    height: localH * 0.06,
-                                                    decoration: BoxDecoration(
-                                                        shape:
-                                                            BoxShape.rectangle,
-                                                        color: ConstStyles
-                                                            .DarkColor),
-                                                    child: Center(
-                                                        child: CustomText(
-                                                      txt: _courseDetailsCont
-                                                                  .courseDetailsResData
-                                                                  .subCategory ==
-                                                              null
-                                                          ? ''
-                                                          : _courseDetailsCont
-                                                              .courseDetailsResData
-                                                              .subCategory,
-                                                      fontSize: localW * 0.05,
-                                                    )),
-                                                  ),
-                                                ],
-                                              ),
+
                                               SizedBox(
                                                 height: localH * 0.02,
                                               ),
@@ -600,7 +550,7 @@ class LiveCourseDetails extends StatelessWidget {
                                                           mainAxisAlignment: MainAxisAlignment.end,
                                                           children: [
                                                             CustomText(
-                                                              txt:  _courseDetailsCont.dataOfCourseDes["data"]['lessons'][index]['name'],
+                                                              txt:  _courseDetailsCont.dataOfCourseDes["data"]['lessons'][index]['name']??"",
                                                               txtColor: ConstStyles.DarkColor,
                                                               txtAlign: TextAlign.start,
                                                             ),

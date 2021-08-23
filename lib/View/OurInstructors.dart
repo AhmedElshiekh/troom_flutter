@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:troom/Controller/HomePage/HomeCont.dart';
 import 'package:troom/Controller/ModalHudCont.dart';
-import 'package:troom/CustomViews/AppBarText.dart';
 import 'package:troom/CustomViews/CustomText.dart';
 import 'package:troom/CustomViews/LogoContainer.dart';
 import 'package:troom/Models/OurTeachers/OurTeachersDataList.dart';
 import 'package:troom/Util/ConstStyles.dart';
 import 'package:troom/Util/EndPoints.dart';
+import 'package:troom/View/Instructors%20Details.dart';
 import 'package:troom/View/MainDrawer.dart';
 
 class OurInstructor extends StatelessWidget {
@@ -19,7 +19,8 @@ class OurInstructor extends StatelessWidget {
   Widget build(BuildContext context) {
     var appBarH = AppBar().preferredSize.height;
     return Scaffold(
-      appBar: AppBar( title: Image.asset('assets/images/logo.png',fit: BoxFit.contain,height: appBarH,),
+      appBar: AppBar(title: Image.asset(
+        'assets/images/logo.png', fit: BoxFit.contain, height: appBarH,),
         backgroundColor: ConstStyles.WhiteColor,
         iconTheme: IconThemeData(color: ConstStyles.DarkColor),
       ),
@@ -70,9 +71,11 @@ class OurInstructor extends StatelessWidget {
                     Container(
                       width: localW,
                       height: localH * 0.08,
-                      margin: EdgeInsets.only(left: localW * 0.075,right: localW * 0.075),
+                      margin: EdgeInsets.only(
+                          left: localW * 0.075, right: localW * 0.075),
                       child: CustomText(
-                        txt: '${'WeFound'.tr} ${_homeCont.ourTeachersList.length}  ${'TeachersForYou'.tr}',
+                        txt: '${'WeFound'.tr} ${_homeCont.ourTeachersList
+                            .length}  ${'TeachersForYou'.tr}',
                         fontSize: localW * 0.06,
                         txtColor: ConstStyles.BlueColor,
                       ),
@@ -92,23 +95,36 @@ class OurInstructor extends StatelessWidget {
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
                               if (_homeCont.ourTeachersList.length > 0) {
-                                return Container(
-                                  margin: EdgeInsets.only(
-                                      left: localW * 0.05, right: localW * 0.05, bottom: localW * 0.05),
+                                return GestureDetector(
+                                  onTap: () {
+
+                                    Navigator.push(context, MaterialPageRoute(
+                                        builder: (_) =>
+                                            Instructor(t: _homeCont.ourTeachersList
+                                                [index],)));
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(
+                                        left: localW * 0.05,
+                                        right: localW * 0.05,
+                                        bottom: localW * 0.05),
                                     decoration: BoxDecoration(
                                       color: ConstStyles.WhiteColor,
-                                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20.0)),
                                       boxShadow: [
                                         BoxShadow(
                                           color: Colors.grey,
                                           blurRadius: 2.0,
                                           spreadRadius: 1.0,
-                                          offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                                          offset: Offset(2.0,
+                                              2.0), // shadow direction: bottom right
                                         )
                                       ],
                                     ),
-                                  child: ourTeacherListItem(localW, localH,
-                                      _homeCont.ourTeachersList[index]),
+                                    child: ourTeacherListItem(localW, localH,
+                                        _homeCont.ourTeachersList[index]),
+                                  ),
                                 );
                               } else {
                                 return SizedBox(
@@ -133,7 +149,7 @@ class OurInstructor extends StatelessWidget {
   }
 
   //TODO Our Teacher List Item
-  Widget ourTeacherListItem(localW,localH,OurTeachersDataList item){
+  Widget ourTeacherListItem(localW, localH, OurTeachersDataList item) {
     return Column(
       mainAxisAlignment:
       MainAxisAlignment.start,
@@ -141,7 +157,7 @@ class OurInstructor extends StatelessWidget {
       CrossAxisAlignment.center,
       children: [
         Container(
-          width: localW ,
+          width: localW,
           height: localH * 0.25,
           decoration: BoxDecoration(
             image: DecorationImage(

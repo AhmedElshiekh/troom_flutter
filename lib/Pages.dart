@@ -76,13 +76,13 @@ class Pages{
       binding: AllCoursesBinding(),
     ),
 
+
+
     GetPage(
       name: AllLiveCourses.Id,
       page: () => AllLiveCourses(),
       binding: AllLiveCoursesBinding(),
     ),
-
-
 
     GetPage(
       name: AboutUs.Id,

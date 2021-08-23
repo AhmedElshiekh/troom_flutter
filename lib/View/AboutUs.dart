@@ -65,136 +65,56 @@ class AboutUs extends GetView<AboutUsCont> {
                             color: ConstStyles.OrangeColor,
                           ),
                         ),
-
-                        //TODO About Us Data
-                        SizedBox(
-                          width: localW,
-                          height: localH * 0.4,
-                          child: Stack(
-                            fit: StackFit.expand,
-                            children: [
-                              //TODO Image
-                              Positioned.fill(
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: GetBuilder<AboutUsCont>(
-                                    builder: (_){
-                                      if(_aboutUsCont.aboutUsResData.image != null){
-                                        return SizedBox(
-                                            width:localW,
-                                            height: localH * 0.4,
-                                            child:
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                  fit: BoxFit.fill,
-                                                  colorFilter: ColorFilter.mode(
-                                                      Colors.black.withOpacity(1), BlendMode.dstATop),
-                                                  image: NetworkImage(
-                                                      "${EndPoints.ImageUrl}${_aboutUsCont.aboutUsResData.image.toString()}"),
-                                                ),
-                                              ),
-                                              width: localW,
-                                              // height: localH * 0.4,
-                                            )
-                                        );
-                                      }else{
-                                        return LogoContainer();
-                                      }
-                                    },
-                                  ),
-                                ),
-                              ),
-
-                              Positioned.fill(
-                                child: Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Container(
-                                    color: Colors.black38,
-                                    child: ListView(
-                                      children: [
-                                        //TODO Name
-                                        SizedBox (
-                                          height: localH * 0.08,
-                                          child: Container(
-                                            margin: EdgeInsets.only(
-                                                left: localW * 0.04,top: localH * 0.02,right: localW * 0.04),
-                                            child: CustomText(txt:'${'WhoWeAre'.tr}  ',txtColor: ConstStyles.OrangeColor,fontSize: localW * 0.1,fontWeight: FontWeight.w900,),
-                                          ),
-                                        ),
-
-                                        //TODO Short Desc
-                                        Container(
-                                          margin: EdgeInsets.only(
-                                              left: localW * 0.15,
-                                              right: localW * 0.02),
-                                          child: SizedBox(
-                                            height: localH * 0.18,
-                                            child: SingleChildScrollView(
-                                              child: AutoTextSize(
-                                                text:
-                                                _aboutUsCont.aboutUsResData.shDesc == null ?
-                                                'Short Description':_aboutUsCont.aboutUsResData.shDesc,
-                                                fontWeight: FontWeight.w900,
-                                                size: localW * 0.035,
-                                                textColor: ConstStyles.WhiteColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-
-                                        //TODO Full Desc
-                                        Container(
-                                          margin: EdgeInsets.only(
-                                              left: localW * 0.15,
-                                              top: localH * 0.015,
-                                              right: localW * 0.02,
-                                          bottom: localH * 0.015),
-                                          child: SizedBox(
-                                            height: localH * 0.2,
-                                            child: SingleChildScrollView(
-                                              child: Html(
-                                                style: {
-                                                  "body":Style(
-                                                    fontSize: FontSize(localW * 0.035),
-                                                    fontWeight: FontWeight.w900,
-                                                    color: ConstStyles.WhiteColor,
-                                                  )
-                                                },
-                                                data:
-                                                _aboutUsCont.aboutUsResData.fullDesc == null ? 'Full Description':_aboutUsCont.aboutUsResData.fullDesc,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              )
-
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(
-                          height: localH * 0.08,
-                          width: localW * 0.05,
-                          child: Container(
-                            margin: EdgeInsets.only(
-                                left: localW * 0.04),
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  "assets/images/logo.png",),
-                                fit: BoxFit.fill,
-                              ),
+                        SizedBox(height: 10,),
+                        Container(
+                          margin: EdgeInsets.all(20),
+                          padding: EdgeInsets.all(20),
+                          height: 200,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.fill,
+                              colorFilter: ColorFilter.mode(
+                                  Colors.black.withOpacity(1), BlendMode.dstATop),
+                              image: NetworkImage(
+                                  "${EndPoints.ImageUrl}${_aboutUsCont.aboutUsResData.image.toString()}"),
                             ),
                           ),
+                          width: localW,
+                          // height: localH * 0.4,
+                        ),
+                        SizedBox (
+                          height: localH * 0.08,
+                          child: Container(
+                            margin: EdgeInsets.only(
+                                left: localW * 0.04,top: localH * 0.02,right: localW * 0.04),
+                            child: CustomText(txt:'${'WhoWeAre'.tr}  ',txtColor: ConstStyles.OrangeColor,fontSize: localW * 0.1,fontWeight: FontWeight.w900,),
+                          ),
                         ),
 
-                        //TODO Footer
+
+                        Container(
+                          margin: EdgeInsets.only(
+                              left: localW * 0.15,
+                              top: localH * 0.015,
+                              right: localW * 0.02,
+                              bottom: localH * 0.015),
+                          child: SizedBox(
+                            height: localH * 0.4,
+
+                              child: Html(
+                                style: {
+                                  "body":Style(
+                                    fontSize: FontSize(localW * 0.030),
+                                    fontWeight: FontWeight.w900,
+                                    color: ConstStyles.BlackColor,
+                                  )
+                                },
+                                data:
+                                _aboutUsCont.aboutUsResData.fullDesc == null ? 'Full Description':_aboutUsCont.aboutUsResData.fullDesc,
+                              ),
+                            ),
+
+                        ),
                         Container(
                           height: localH * 0.52,
                           width: localW * 0.8,
@@ -221,8 +141,8 @@ class AboutUs extends GetView<AboutUsCont> {
                                   alignment: Alignment.topLeft,
                                   child: Container(
                                     margin: EdgeInsets.only(
-                                        left: localW * 0.24,
-                                        right: localW * 0.02,),
+                                      left: localW * 0.24,
+                                      right: localW * 0.02,),
                                     color: ConstStyles.DarkColor,
                                     child: ListView(
                                       children: [
@@ -247,7 +167,7 @@ class AboutUs extends GetView<AboutUsCont> {
                                         //TODO Email
                                         Container(
                                           margin: EdgeInsets.only(
-                                              top: localH * 0.04,
+                                            top: localH * 0.04,
                                           ),
                                           child: Row(
                                             children: [
@@ -265,7 +185,7 @@ class AboutUs extends GetView<AboutUsCont> {
                                         //TODO Address
                                         Container(
                                           margin: EdgeInsets.only(
-                                              top: localH * 0.04,
+                                            top: localH * 0.04,
                                           ),
                                           child: Row(
                                             children: [
@@ -282,7 +202,7 @@ class AboutUs extends GetView<AboutUsCont> {
                                         ),
                                         Container(
                                           margin: EdgeInsets.only(
-                                              top: localH * 0.04,),
+                                            top: localH * 0.04,),
                                           child: Row(
                                             children: [
                                               CustomText(
@@ -299,7 +219,7 @@ class AboutUs extends GetView<AboutUsCont> {
                                         //TODO Facebook
                                         Container(
                                           margin: EdgeInsets.only(
-                                              top: localH * 0.04,
+                                            top: localH * 0.04,
                                           ),
                                           child: Row(
                                             children: [
@@ -317,7 +237,7 @@ class AboutUs extends GetView<AboutUsCont> {
                                         //TODO Twitter
                                         Container(
                                           margin: EdgeInsets.only(
-                                              top: localH * 0.04,),
+                                            top: localH * 0.04,),
                                           child: Row(
                                             children: [
                                               CustomText(
@@ -334,7 +254,7 @@ class AboutUs extends GetView<AboutUsCont> {
                                         //TODO LinkedIn
                                         Container(
                                           margin: EdgeInsets.only(
-                                              top: localH * 0.04,
+                                            top: localH * 0.04,
                                           ),
                                           child: Row(
                                             children: [
@@ -352,8 +272,8 @@ class AboutUs extends GetView<AboutUsCont> {
                                         //TODO Instagram
                                         Container(
                                           margin: EdgeInsets.only(
-                                              top: localH * 0.04,
-                                              ),
+                                            top: localH * 0.04,
+                                          ),
                                           child: Row(
                                             children: [
                                               CustomText(
@@ -394,6 +314,7 @@ class AboutUs extends GetView<AboutUsCont> {
                             ],
                           ),
                         ),
+
 
                       ],
                     );

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:troom/Controller/Drawer/MainDrawerCont.dart';
@@ -153,10 +154,7 @@ class _MainDrawerState extends State<MainDrawer> {
                         txtColor: ConstStyles.TextColor,
                       ),
                       onTap: () {
-                        Navigator.pop(context);
-                        print('Nav :: OurInstructor Clicked');
-                        Get.back();
-                        Get.toNamed(OurInstructor.Id);
+                       Navigator.push(context,MaterialPageRoute(builder: (_)=>OurInstructor()));
                       },
                     ),
 
@@ -321,10 +319,7 @@ class _MainDrawerState extends State<MainDrawer> {
                         txtColor: ConstStyles.TextColor,
                       ),
                       onTap: () {
-                        Navigator.pop(context);
-                        print('Nav :: OurInstructors Clicked');
-                        Get.back();
-                        Get.toNamed(OurInstructor.Id);
+                      Navigator.push(context, MaterialPageRoute(builder: (_)=>OurInstructor()));
                       },
                     ),
                     //TODO contact us

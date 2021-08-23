@@ -314,41 +314,7 @@ class LiveCourseListItem extends StatelessWidget {
                     ),
                   ),
 
-                  Container(
-                    decoration: BoxDecoration(
-                      color:
-                      Colors.lightGreen[100],
-                      borderRadius:
-                      BorderRadius.all(
-                        Radius.circular(50),
-                      ),
-                    ),
-                    padding: EdgeInsets.all(localW* 0.012),
-                    child: Row(
-                      mainAxisAlignment:
-                      MainAxisAlignment.start,
-                      crossAxisAlignment:
-                      CrossAxisAlignment
-                          .center,
-                      children: [
-                        Icon(
-                          Icons.double_arrow,
-                          color: Colors.green,
-                        ),
 
-                        SizedBox(
-                          // width: localW * 0.2,
-                          child: AutoTextSize(
-                            text: more,
-                            textColor:
-                            Colors.green,
-                            size:
-                            localW * 0.04,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
