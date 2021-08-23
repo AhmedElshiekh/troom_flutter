@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-<<<<<<< HEAD
-import 'package:transparent_image/transparent_image.dart';
-=======
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
 import 'package:troom/Controller/ModalHudCont.dart';
 import 'package:troom/Controller/Profile/StudProfCont.dart';
 import 'package:troom/CustomViews/AutoTextSize.dart';
@@ -55,16 +51,9 @@ class StudentProfile extends GetView<StudProfCont> {
                                 children: [
                                   //TODO Bar
                                   Container(
-<<<<<<< HEAD
-
-                                    height: localH * .35,
-                                    width: localW,
-                                    padding: EdgeInsets.only(top: localH * 0.01,left: 30,right: 30),
-=======
                                     height: localH * .47,
                                     width: localW,
                                     padding: EdgeInsets.only(bottom: localH * 0.05,top: localH * 0.01),
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
                                     color: ConstStyles.DarkColor,
                                     child: Column(
                                       children: [
@@ -74,124 +63,17 @@ class StudentProfile extends GetView<StudProfCont> {
                                           width: localW * 0.25,
                                           child: _cont.studProfResData.image != null ? ClipRRect(
                                             borderRadius: BorderRadius.circular(50),
-<<<<<<< HEAD
-                                            child: FadeInImage.memoryNetwork(
-                                              placeholder: kTransparentImage,
-                                              image: EndPoints.ImageUrl + _cont
-                                                  .studProfResData.image,
-                                            )
-                                          ) :   SizedBox(
-                                              width: MediaQuery
-                                                  .of(context)
-                                                  .size
-                                                  .width * 0.30,
-                                              height: appBarH,
-                                              child: Container(
-                                                child: LogoContainer(),
-                                              )
-                                          ),
-
-                                        ),
-                                        SizedBox(height: localH * 0.02,),
-
-=======
                                             child: Image(
                                               image: NetworkImage(EndPoints.ImageUrl + _cont.studProfResData.image),
                                               fit: BoxFit.contain,
                                             ),
                                           ) : null,
                                         ),
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
                                         //TODO User Name
                                         CustomText(
                                           txt: _cont.studProfResData.name == null ? '' : _cont.studProfResData.name,
                                         ),
 
-<<<<<<< HEAD
-                                        SizedBox(height: localH * 0.02,),
-
-                                        //TODO My profile
-
-                                  Container(
-
-                                    color: Colors.white,
-                                    child:
-                                    Row(
-                                      children: [
-                                      Container(
-                                        color:Colors.black12,
-                                        padding: EdgeInsets.only(top: 10,left:25,right:25,bottom: 10),
-
-                                        child:   InkWell(
-                                          onTap: (){
-                                            _cont.changeView(LocalDataStrings.MyProfile);
-                                          },
-
-                                          child:
-                                          Icon(Icons.person,color:  _cont.showView == LocalDataStrings.MyProfile
-                                              ? ConstStyles.OrangeColor : ConstStyles.TextColor,),
-
-
-                                        ),
-
-                                      ),
-                                        //TODO My Courses
-                                        Container(
-                                          padding: EdgeInsets.only(top: 10,left:30,right:30,bottom: 10),
-
-                                          child: InkWell(
-                                            onTap: (){
-                                              _cont.changeView(LocalDataStrings.MyCourses);
-                                            },
-
-
-                                               child:
-                                                  Icon(Icons.dvr,color:  _cont.showView == LocalDataStrings.MyCourses
-                                                      ? ConstStyles.OrangeColor : ConstStyles.TextColor,),
-
-
-
-
-                                          ),
-                                        ),
-
-                                        //TODO My Classes
-                                      Container(
-                                          padding: EdgeInsets.only(top: 10,left:20,right:20,bottom: 10),
-color: Colors.black12,
-
-                                        child:  InkWell(
-                                          onTap: (){
-                                            _cont.changeView(LocalDataStrings.MyClasses);
-                                          },
-
-                                          child:
-                                          Icon(Icons.live_tv,color:  _cont.showView == LocalDataStrings.MyClasses
-                                              ? ConstStyles.OrangeColor : ConstStyles.TextColor,),
-
-
-
-                                        ),
-                                      ),
-
-                                        //TODO My Private Classes
-                                        Container(
-                                          padding: EdgeInsets.only(top: 10,left:25,right:25,bottom: 10),
-
-                                          child:  InkWell(
-                                            onTap: (){
-                                              _cont.changeView(LocalDataStrings.MyPrivateClasses);
-                                            },
-
-                                              child:
-                                                  Icon(Icons.live_tv,color:  _cont.showView == LocalDataStrings.MyPrivateClasses
-                                                      ? ConstStyles.OrangeColor : ConstStyles.TextColor,),
-
-
-                                          ),
-
-                                        )
-=======
                                         SizedBox(height: localH * 0.025,),
 
                                         //TODO My profile
@@ -279,41 +161,11 @@ color: Colors.black12,
                                           ),
                                         ),
 
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
 
                                       ],
                                     ),
                                   ),
 
-<<<<<<< HEAD
-                                       Row(
-                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                         children: [
-
-                                           CustomText(txt: 'MyProfileData'.tr,
-                                             txtColor: _cont.showView == LocalDataStrings.MyProfile
-                                                 ? ConstStyles.OrangeColor : ConstStyles.TextColor,fontSize: 12),
-
-                                           CustomText(txt: 'MyCourses'.tr,
-                                             txtColor: _cont.showView == LocalDataStrings.MyCourses
-                                                 ? ConstStyles.OrangeColor : ConstStyles.TextColor ,fontSize: 12,),
-                                         Padding(
-                                           padding: EdgeInsets.only(right: 15),
-                                           child:   CustomText(txt: 'MyClasses'.tr,
-                                               txtColor:  _cont.showView == LocalDataStrings.MyClasses
-                                                   ? ConstStyles.OrangeColor : ConstStyles.TextColor,fontSize: 12),
-                                         ),
-                                           CustomText(txt: 'MyPrivateClasses'.tr,
-                                             txtColor: _cont.showView == LocalDataStrings.MyPrivateClasses
-                                                 ? ConstStyles.OrangeColor : ConstStyles.TextColor ,fontSize: 12),
-                                         ],
-                                       )
-                                      ],
-                                    ),
-                                  ),
-
-=======
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
                                   //TODO Profile Data
                                   Container(
                                     margin: EdgeInsets.only(left: localW * 0.1,right: localW * 0.1,top: localH*0.05,bottom: localH * 0.1),
@@ -338,26 +190,6 @@ color: Colors.black12,
                                               SizedBox(height: localH * 0.03,),
                                               SizedBox(
                                                 width: localW,
-<<<<<<< HEAD
-                                                height: localH * 0.6,
-                                                child: ListView.builder(
-                                                  itemCount: _cont.coursesList != null ? _cont.coursesList.length : 0,
-                                                  itemBuilder: (context,index){
-                                                    if(_cont.coursesList.length > 0){
-                                                      return InkWell(
-                                                          onTap: (){
-                                                            Get.to( () => CourseDetails(_cont.coursesList[index].key));
-                                                          },
-                                                          child: myCoursesItem(localH * 0.6, localW,_cont.coursesList[index]));
-                                                    }else{
-                                                      return SizedBox(
-                                                        width: localW,
-                                                        height: localH * 0.6,
-                                                        child: LogoContainer(),
-                                                      );
-                                                    }
-                                                  },),),
-=======
                                                   height: localH * 0.6,
                                                   child: ListView.builder(
                                                     itemCount: _cont.coursesList != null ? _cont.coursesList.length : 0,
@@ -376,7 +208,6 @@ color: Colors.black12,
                                                         );
                                                       }
                                                     },),),
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
                                             ],
                                           );
                                         }
@@ -396,27 +227,6 @@ color: Colors.black12,
                                               ),
                                               SizedBox(height: localH * 0.015,),
 
-<<<<<<< HEAD
-                                              SizedBox(
-                                                width: localW,
-                                                height: localH * 0.33,
-                                                child: ListView.builder(
-                                                    itemCount: _cont.classesList != null
-                                                        ? _cont.classesList.length
-                                                        : 0,
-                                                    itemBuilder: (context,index){
-                                                      if(_cont.classesList.length > 0){
-                                                        return myClassesItem(localH * 0.6, localW,_cont.classesList[index]);
-                                                      }else{
-                                                        return SizedBox(
-                                                          width: localW,
-                                                          height: localH * 0.6,
-                                                          child: LogoContainer(),
-                                                        );
-                                                      }
-                                                    }),
-                                              )
-=======
                                            SizedBox(
                                              width: localW,
                                              height: localH * 0.33,
@@ -436,7 +246,6 @@ color: Colors.black12,
                                                    }
                                              }),
                                            )
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
 
                                             ],
                                           );
@@ -729,11 +538,7 @@ color: Colors.black12,
                               ],
                             ),
                           );
-<<<<<<< HEAD
-                        }
-=======
                       }
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
                       }),
 
                       AutoTextSize(text: item.price == null ? 0.toString():
@@ -839,40 +644,6 @@ color: Colors.black12,
                         ),
                         child: Text("Placement"),
                         onPressed: (){
-<<<<<<< HEAD
-                          return Get.defaultDialog(
-                            title : 'Placement',
-                            content: Column(
-                              children: [
-                                SizedBox(height:10),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("Score: "),
-                                    Text("${item.placement['score']} /"),
-                                    Text("${item.placement['total']}"),
-                                    SizedBox(width:15),
-                                    "${item.placement['pass']}" == "0" ? Text("X",style: TextStyle(color: Colors.red)) : Icon(Icons.done,color: Colors.green),
-                                  ],
-                                ),
-                                SizedBox(height:10),
-                                Container(
-                                  width: localW,
-                                  child: FlatButton(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10.0),
-                                      ),
-                                      color: Colors.red,
-                                      child: Text("Back"),
-                                      onPressed: (){
-                                        Get.back();
-                                      }
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-=======
                               return Get.defaultDialog(
                                 title : 'Placement',
                                 content: Column(
@@ -905,7 +676,6 @@ color: Colors.black12,
                                   ],
                                 ),
                               );
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
                         },
                       ),
                       SizedBox(height:10),
@@ -916,39 +686,6 @@ color: Colors.black12,
                         color: Colors.amber,
                         child: Text("Final Exam"),
                         onPressed: (){
-<<<<<<< HEAD
-                          return Get.defaultDialog(
-                            title : 'Final Exam',
-                            content: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("Score: "),
-                                    Text("${item.finalExam['score']} /"),
-                                    Text("${item.finalExam['total']}"),
-                                    SizedBox(width:15),
-                                    "${item.finalExam['pass']}" == "0" ? Text("X",style: TextStyle(color: Colors.red)) : Icon(Icons.done,color: Colors.green),
-                                  ],
-                                ),
-                                SizedBox(height:10),
-                                Container(
-                                  width: localW,
-                                  child: FlatButton(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10.0),
-                                      ),
-                                      color: Colors.red,
-                                      child: Text("Back"),
-                                      onPressed: (){
-                                        Get.back();
-                                      }
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-=======
                               return Get.defaultDialog(
                                 title : 'Final Exam',
                                 content: Column(
@@ -980,23 +717,12 @@ color: Colors.black12,
                                   ],
                                 ),
                               );
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
                         },
                       ),
                       SizedBox(height:10),
                       Container(
                         width: localW,
                         child: FlatButton(
-<<<<<<< HEAD
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            color: Colors.red,
-                            child: Text("Back"),
-                            onPressed: (){
-                              Get.back();
-                            }
-=======
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
@@ -1005,7 +731,6 @@ color: Colors.black12,
                           onPressed: (){
                             Get.back();
                           }
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
                         ),
                       ),
                     ],

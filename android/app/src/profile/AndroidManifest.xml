@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.troom.troom">
     <!-- Flutter needs it to communicate with the running application
@@ -6,12 +5,3 @@
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
-=======
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.troom.troom">
-    <!-- Flutter needs it to communicate with the running application
-         to allow setting breakpoints, to provide hot reload, etc.
-    -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-</manifest>
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df

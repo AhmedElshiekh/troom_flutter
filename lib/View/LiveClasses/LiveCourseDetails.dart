@@ -113,9 +113,6 @@ class LiveCourseDetails extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-<<<<<<< HEAD
-
-=======
                                               Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
@@ -167,7 +164,6 @@ class LiveCourseDetails extends StatelessWidget {
                                                   ),
                                                 ],
                                               ),
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
                                               SizedBox(
                                                 height: localH * 0.02,
                                               ),
@@ -604,11 +600,7 @@ class LiveCourseDetails extends StatelessWidget {
                                                           mainAxisAlignment: MainAxisAlignment.end,
                                                           children: [
                                                             CustomText(
-<<<<<<< HEAD
-                                                              txt:  _courseDetailsCont.dataOfCourseDes["data"]['lessons'][index]['name']??"",
-=======
                                                               txt:  _courseDetailsCont.dataOfCourseDes["data"]['lessons'][index]['name'],
->>>>>>> 8735c7c42bfa70f00bed54310f9a2134fdd3b0df
                                                               txtColor: ConstStyles.DarkColor,
                                                               txtAlign: TextAlign.start,
                                                             ),
