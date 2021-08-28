@@ -35,6 +35,7 @@ import 'package:transparent_image/transparent_image.dart';
 
 import 'StudentProfile/StudentProfile.dart';
 
+
 class Home extends GetWidget<HomeCont> {
   static const Id = 'HomeScreen';
   String LOGD = 'HomeScreen';
@@ -74,6 +75,8 @@ class Home extends GetWidget<HomeCont> {
                                   :'مرحبا بك\n${_cont.studProfResData.name}'.tr,
                                 txtColor: ConstStyles.BlackColor,
                               fontSize: 12,
+
+
                             )
                           ],
                         )

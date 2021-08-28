@@ -15,7 +15,7 @@ import 'package:troom/View/MainDrawer.dart';
 class OurInstructor extends StatelessWidget {
   static const Id = 'OurInstructorView';
   InsApi i =InsApi();
-  final HomeCont _homeCont = Get.put(HomeCont());
+ final HomeCont _homeCont = Get.put(HomeCont());
 
   @override
   Widget build(BuildContext context) {
