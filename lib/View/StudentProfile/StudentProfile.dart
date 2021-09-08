@@ -56,7 +56,7 @@ class StudentProfile extends GetView<StudProfCont> {
                           children: [
                             //TODO Bar
                             Container(
-                              height: localH * .35,
+                              height:_cont.studProfResData.image != null? localH * .40:localH * .35,
                               width: localW,
                               padding: EdgeInsets.only(
                                   top: localH * 0.01, left: 20, right: 20),
@@ -86,7 +86,7 @@ class StudentProfile extends GetView<StudProfCont> {
                                             )),
                                   ),
                                   SizedBox(
-                                    height: localH * 0.02,
+                                    height: localH * 0.03,
                                   ),
 
                                   //TODO User Name
@@ -97,13 +97,13 @@ class StudentProfile extends GetView<StudProfCont> {
                                   ),
 
                                   SizedBox(
-                                    height: localH * 0.04,
+                                    height: localH * 0.03,
                                   ),
 
                                   //TODO My profile
 
                                   Container(
-                                    padding: EdgeInsets.all(5),
+                                    padding: EdgeInsets.all(2),
                                     color: Colors.white,
                                     child: Row(
                                       mainAxisAlignment:
